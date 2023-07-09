@@ -1,0 +1,50 @@
+html{
+    font-family: 100;
+    line-height: 1.5rem;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    margin: 0 auto;
+    padding: 0;
+    min-height: 100vh;
+    max-width: 1400px;
+}
+
+*,
+*::before,
+*::after {
+   box-sizing: inherit;
+}
+
+#menu{
+    font-size: 2rem;
+    padding: 20px;
+    text-align: center;
+}
+
+
+#board{
+    display:grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: minmax(1fr, auto) minmax(100px, auto) minmax(400px, auto);
+    grid-auto-rows: minmax(100px, auto);
+
+    grid-gap: 0.75rem;
+
+    align-items: stretch;
+    justify-items: stretch;
+ }
+
+ .off{
+    background-color: blue;
+    width: 40px;
+    height: 40px
+ }
+
+ .on{
+    background-color: red;
+    width: 40px;
+    height: 40px
+ }
