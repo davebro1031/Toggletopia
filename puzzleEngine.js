@@ -102,3 +102,9 @@ function toggle(buttonId){
         
     })
 }
+
+function resetButtons(){
+    buttonIds.forEach(item =>{
+        document.getElementById(item).setAttribute("class", "off")
+    })
+}
