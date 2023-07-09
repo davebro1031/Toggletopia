@@ -19,46 +19,70 @@ body{
 }
 
 #menu{
+    grid-area: menu;
+    display: flex;
+    justify-content: space-around;
     font-size: 2rem;
     padding: 20px;
     text-align: center;
 }
 
-
 #buttons{
-    display:grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: minmax(1fr, auto) minmax(100px, auto) minmax(400px, auto);
-    grid-auto-rows: minmax(100px, auto);
+    position:absolute;
+    top: 30%;
+    left: 5%;
+    width: 70%;
 
-    grid-gap: 0.75rem;
-
-    align-items: stretch;
-    justify-items: stretch;
+    display:flex;
+    justify-content: space-around;
  }
 
  #targetSequence{
-    display:grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: minmax(1fr, auto) minmax(100px, auto) minmax(400px, auto);
-    grid-auto-rows: minmax(100px, auto);
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 70%;
 
-    grid-gap: 0.75rem;
-
-    align-items: stretch;
-    justify-items: stretch;
+    display:flex;
+    justify-content: space-around;
  }
 
  .off{
     background-color: #18005f;
-    width: 40px;
-    height: 40px;
+    width: 9%;
+    height: 0;
+    padding-bottom: 9%;
     border: 3px solid rgb(119, 119, 255)
  }
 
  .on{
     background-color: rgb(2, 131, 196);
-    width: 40px;
-    height: 40px;
+    width: 9%;
+    height: 0;
+    padding-bottom: 9%;
     border: 3px solid rgb(0, 81, 167)
+ }
+
+ #reset{
+    position:absolute;
+    top: 30%;
+    left: 80%;
+    width: 3rem;
+    height: 0;
+    padding-top: 2%;
+    padding-bottom: 5%;
+
+    border: 1px black solid
+ }
+
+ #newPuzzle{
+    position:absolute;
+    top: 50%;
+    left: 80%;
+    width: 5.5rem;
+    height: 0;
+    padding-top: 2%;
+    padding-bottom: 5%;
+    border: 1px black solid
+
  }

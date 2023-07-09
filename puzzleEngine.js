@@ -44,6 +44,10 @@ gameMapS5.set('3', [2,3,5])
 gameMapS5.set('4', [1,4,5])
 gameMapS5.set('5', [3,4,5])
 
+
+
+
+
 // Choose the specific game map to be played
 currentMap = gameMapSPM
 
@@ -54,34 +58,37 @@ let buttonIds = [...currentMap.keys()]
 let targetIds = buttonIds.map(item => item+"t")
 
 
+
+
+
+
 // random integer generator 
 function randInt(max){
     return Math.floor(Math.random()*max)
 } 
 
+
+
+
+
 // create target sequence
 
 function newTarget(){
-    let currentTargetSequence = new String(randInt(2**currentMap.size).toString(2))
-    
-    let seqLen = currentTargetSequence.length
-    for(i = seqLen - 1; i >= 0; i--){
-        
-        if(currentTargetSequence[i]==1){
-            let currentTargetId = targetIds[i + 8 - seqLen]
-            let currentTargetButton = document.getElementById(currentTargetId)
-            document.getElementById(currentTargetId).setAttribute("class", "on")
-        }
 
+    for(i in targetIds){
+        document.getElementById(targetIds[i]).setAttribute("class", "off")
+
+        if(randInt(2)==1){
+            document.getElementById(targetIds[i]).setAttribute("class", "on")
+        }
     }
     
-    return currentTargetSequence
 }
 
 console.log(newTarget())
 
 
-
+// Button press function
 function toggle(buttonId){
     const targetButtons = currentMap.get(buttonId)
 
@@ -93,5 +100,11 @@ function toggle(buttonId){
             currentButton.setAttribute("class", "on")
         }
         
+    })
+}
+
+function resetButtons(){
+    buttonIds.forEach(item =>{
+        document.getElementById(item).setAttribute("class", "off")
     })
 }
