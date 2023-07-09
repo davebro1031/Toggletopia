@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puzzle Game</title>
-    <script src="puzzleEngine.js"></script>
+    <script src="puzzleEngine.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,14 +15,14 @@
     </div>
 
     <div id = "board">
-        <button id = "1", class = "off"></button>
-        <button id = "2", class = "off"></button>
-        <button id = "3", class = "off"></button>
-        <button id = "4", class = "off"></button>
-        <button id = "5", class = "off"></button>
-        <button id = "6", class = "off"></button>
-        <button id = "7", class = "off"></button>
-        <button id = "8", class = "off"></button>
+        <button id = "1", class = "off" onclick = "toggle('1')"></button>
+        <button id = "2", class = "off" onclick = "toggle('2')"></button>
+        <button id = "3", class = "off" onclick = "toggle('3')"></button>
+        <button id = "4", class = "off" onclick = "toggle('4')"></button>
+        <button id = "5", class = "off" onclick = "toggle('5')"></button>
+        <button id = "6", class = "off" onclick = "toggle('6')"></button>
+        <button id = "7", class = "off" onclick = "toggle('7')"></button>
+        <button id = "8", class = "off" onclick = "toggle('8')"></button>
     </div>
 
 </body>
