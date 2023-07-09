@@ -25,7 +25,19 @@ body{
 }
 
 
-#board{
+#buttons{
+    display:grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: minmax(1fr, auto) minmax(100px, auto) minmax(400px, auto);
+    grid-auto-rows: minmax(100px, auto);
+
+    grid-gap: 0.75rem;
+
+    align-items: stretch;
+    justify-items: stretch;
+ }
+
+ #targetSequence{
     display:grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: minmax(1fr, auto) minmax(100px, auto) minmax(400px, auto);
@@ -38,13 +50,15 @@ body{
  }
 
  .off{
-    background-color: blue;
+    background-color: #18005f;
     width: 40px;
-    height: 40px
+    height: 40px;
+    border: 3px solid rgb(119, 119, 255)
  }
 
  .on{
-    background-color: red;
+    background-color: rgb(2, 131, 196);
     width: 40px;
-    height: 40px
+    height: 40px;
+    border: 3px solid rgb(0, 81, 167)
  }
