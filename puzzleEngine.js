@@ -31,9 +31,9 @@ gameMapS8.set('2', [1, 2, 4, 6, 8])
 gameMapS8.set('3', [1, 3, 4, 6, 7])
 gameMapS8.set('4', [2, 3, 4, 7, 8])
 gameMapS8.set('5', [1, 5, 6, 7, 8])
-gameMapS8.set('6', [1, 2, 3, 5, 7])
-gameMapS8.set('7', [1, 2, 3, 5, 7])
-gameMapS8.set('8', [1, 2, 3, 5, 7])
+gameMapS8.set('6', [2, 3, 5, 6, 8])
+gameMapS8.set('7', [1, 3, 4, 5, 7])
+gameMapS8.set('8', [2, 4, 5, 6, 8])
 
 // Symmetric, injective map on 5 blocks
 const gameMapS5 = new Map();
@@ -49,14 +49,52 @@ gameMapS5.set('5', [3,4,5])
 
 
 // Choose the specific game map to be played
-currentMap = gameMapSPM
 
+// default
+let currentMap = gameMapS8
 // Set button IDs:
 let buttonIds = [...currentMap.keys()]
-
 // Set the target IDs:
 let targetIds = buttonIds.map(item => item+"t")
 
+function setDifficulty(choice){
+    currentMap = choice
+    buttonIds = [...currentMap.keys()]
+    targetIds = buttonIds.map(item => item+"t")
+    
+    // clear old buttonboard
+    let buttonboard = document.getElementById("buttons")
+    
+    while(buttonboard.firstChild){
+        buttonboard.removeChild(buttonboard.firstChild)
+    }
+
+    // add new buttons
+    buttonIds.forEach(item =>{
+        let itemdiv = document.createElement("div")
+        buttonboard.append(itemdiv)
+        itemdiv.className = "off"
+        itemdiv.id = item
+        itemdiv.onclick = function() {toggle(item)}        
+
+    })
+
+    let targetboard = document.getElementById("targetSequence")
+    while(targetboard.firstChild){
+        targetboard.removeChild(targetboard.firstChild)
+    }
+
+    targetIds.forEach(item =>{
+        let itemdiv = document.createElement("div")
+        targetboard.append(itemdiv)
+        itemdiv.className = "off"
+        itemdiv.id = item
+    })
+}
+
+
+
+// Generate the levels
 
 
 
@@ -76,6 +114,7 @@ function randInt(max){
 function newTarget(){
 
     for(i in targetIds){
+        console.log(targetIds[i])
         document.getElementById(targetIds[i]).setAttribute("class", "off")
 
         if(randInt(2)==1){
@@ -83,6 +122,7 @@ function newTarget(){
         }
     }
     
+    resetButtons()
 }
 
 console.log(newTarget())
