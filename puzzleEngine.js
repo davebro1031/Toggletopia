@@ -79,42 +79,37 @@ function setDifficulty(choice){
 
     })
 
+    // clear targetboard
     let targetboard = document.getElementById("targetSequence")
     while(targetboard.firstChild){
         targetboard.removeChild(targetboard.firstChild)
     }
 
+    // create new targets
     targetIds.forEach(item =>{
         let itemdiv = document.createElement("div")
         targetboard.append(itemdiv)
         itemdiv.className = "off"
         itemdiv.id = item
     })
+
+    newTarget()
 }
 
 
 
 // Generate the levels
 
-
-
-
-
 // random integer generator 
 function randInt(max){
     return Math.floor(Math.random()*max)
 } 
-
-
-
-
 
 // create target sequence
 
 function newTarget(){
 
     for(i in targetIds){
-        console.log(targetIds[i])
         document.getElementById(targetIds[i]).setAttribute("class", "off")
 
         if(randInt(2)==1){
@@ -125,13 +120,13 @@ function newTarget(){
     resetButtons()
 }
 
-console.log(newTarget())
 
 
 // Button press function
 function toggle(buttonId){
+    
     const targetButtons = currentMap.get(buttonId)
-
+    
     targetButtons.forEach(item =>{
         currentButton = document.getElementById(item.toString(10))        
         if(currentButton.getAttribute("class") == "on"){
@@ -141,6 +136,26 @@ function toggle(buttonId){
         }
         
     })
+    
+    checkSolve()
+}
+
+function checkSolve(){
+    let i = 0
+    while(i < buttonIds.length && document.getElementById(buttonIds[i]).getAttribute("class") == document.getElementById(targetIds[i]).getAttribute("class")){
+        console.log(i)
+        i++
+    }
+
+    if(i == buttonIds.length){
+        targetIds.forEach(item => {
+            if(document.getElementById(item).getAttribute("class") == "off"){
+                document.getElementById(item).setAttribute("class", "offSolved")
+            }else{
+                document.getElementById(item).setAttribute("class", "onSolved")
+            }
+        })
+    }
 }
 
 function resetButtons(){
