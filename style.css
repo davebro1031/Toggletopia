@@ -86,3 +86,19 @@ body{
     border: 1px black solid
 
  }
+
+ .onSolved{
+    background-color: rgb(2, 131, 196);
+    width: 9%;
+    height: 0;
+    padding-bottom: 8%;
+    border: 0.3rem solid gold
+ }
+
+ .offSolved{
+    background-color: #18005f;
+    width: 9%;
+    height: 0;
+    padding-bottom: 8%;
+    border: 0.3rem solid gold
+ }
