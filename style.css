@@ -19,7 +19,7 @@ body{
 }
 
 header{
-    background-color: rgb(125, 215, 246)
+    background-color: #7dd7f6
 }
 
 a{
@@ -43,7 +43,7 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 2px solid black;
+    border: 2px solid #18005f;
     border-radius: 0.5em;
     padding: 0.5em;
     cursor: pointer;
@@ -53,11 +53,11 @@ a{
 /* selected style, added in js */
 .select-clicked{
     border: 2px gray solid;
-    background-color: gray;
+    /* background-color: gray; */
 }
 
 .select:hover{
-    background-color: rgb(46, 197, 247);
+    background-color: #2ec5f7;
 }
 
 .caret{
@@ -65,7 +65,7 @@ a{
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 6px solid black;
+    border-top: 6px solid #18005f;
     transition: 0.3s;
     padding: 0
 }
@@ -78,7 +78,7 @@ a{
 .menu{
     list-style: none;
     padding: 0.2em 0.5em;
-    background: rgb(46, 197, 247);
+    background: #2ec5f7;
     border: 1px solid black;
     border-radius: 0.5em;
     opacity: 0;
@@ -135,7 +135,7 @@ a{
     justify-content: space-around;
  }
 
- #targetSequence{
+ /* #targetSequence{
     position: absolute;
     top: 50%;
     left: 5%;
@@ -143,23 +143,8 @@ a{
 
     display:flex;
     justify-content: space-around;
- }
+ } */
 
- .off{
-    background-color: #18005f;
-    width: 9%;
-    height: 0;
-    padding-bottom: 9%;
-    border: 3px solid rgb(119, 119, 255)
- }
-
- .on{
-    background-color: rgb(46, 197, 247);
-    width: 9%;
-    height: 0;
-    padding-bottom: 9%;
-    border: 3px solid rgb(0, 81, 167)
- }
 
  #reset{
     position:absolute;
@@ -185,6 +170,47 @@ a{
 
  }
 
+.button-off{
+    background-color: #18005f;
+    width: 9%;
+    height: 0;
+    padding-bottom: 8%;
+}
+
+.button-on{
+    background-color:#2ec5f7;
+    width: 9%;
+    height: 0;
+    padding-bottom: 8%;
+}
+
+.target-off{
+    border: 5px solid #18005f
+}
+
+.target-on{
+    border: 5px solid #2ec5f7
+}
+
+
+ /* .off{
+    background-color: #18005f;
+    width: 9%;
+    height: 0;
+    padding-bottom: 9%;
+    border: 3px solid rgb(119, 119, 255)
+ }
+
+.on{
+    background-color: #2ec5f7;
+    width: 9%;
+    height: 0;
+    padding-bottom: 9%;
+    border: 3px solid rgb(0, 81, 167)
+ }
+
+
+
  .onSolved{
     background-color: rgb(2, 131, 196);
     width: 9%;
@@ -199,4 +225,4 @@ a{
     height: 0;
     padding-bottom: 8%;
     border: 0.3rem solid gold
- }
+ } */

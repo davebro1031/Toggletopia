@@ -1,3 +1,13 @@
+const t10 = new Map()
+t10.set(1, "target-on")
+t10.set(0, "target-off")
+
+const b10 = new Map()
+b10.set(1, "button-on")
+b10.set(0, "button-off")
+
+// Create Dropdown menu(s)
+
 const dropdowns = document.querySelectorAll('.dropdown')
 
 dropdowns.forEach(dropdown => {
@@ -93,13 +103,29 @@ gameMapS5.set('5', [3,4,5])
 let currentMap = gameMapS8
 // Set button IDs:
 let buttonIds = [...currentMap.keys()]
+
+let buttonStates = new Map();
+buttonIds.forEach(id =>{
+    buttonStates.set(id, 0)
+})
+
+let targetStates = new Map();
+buttonIds.forEach(id => {
+    targetStates.set(id, 1)
+})
+
 // Set the target IDs:
-let targetIds = buttonIds.map(item => item+"t")
+// let targetIds = buttonIds.map(item => item+"t")
 
 function setDifficulty(choice){
-    currentMap = choice
-    buttonIds = [...currentMap.keys()]
-    targetIds = buttonIds.map(item => item+"t")
+    currentMap = choice   
+    buttonIds = [...currentMap.keys()] 
+
+
+    // targetIds = buttonIds.map(item => item+"t")
+
+    targetStates.clear()
+    buttonStates.clear()
     
     // clear old buttonboard
     let buttonboard = document.getElementById("buttons")
@@ -112,25 +138,24 @@ function setDifficulty(choice){
     buttonIds.forEach(item =>{
         let itemdiv = document.createElement("div")
         buttonboard.append(itemdiv)
-        itemdiv.className = "off"
         itemdiv.id = item
         itemdiv.onclick = function() {toggle(item)}        
 
     })
 
     // clear targetboard
-    let targetboard = document.getElementById("targetSequence")
-    while(targetboard.firstChild){
-        targetboard.removeChild(targetboard.firstChild)
-    }
+    // let targetboard = document.getElementById("targetSequence")
+    // while(targetboard.firstChild){
+    //     targetboard.removeChild(targetboard.firstChild)
+    // }
 
     // create new targets
-    targetIds.forEach(item =>{
-        let itemdiv = document.createElement("div")
-        targetboard.append(itemdiv)
-        itemdiv.className = "off"
-        itemdiv.id = item
-    })
+    // targetIds.forEach(item =>{
+    //     let itemdiv = document.createElement("div")
+    //     targetboard.append(itemdiv)
+    //     itemdiv.className = "off"
+    //     itemdiv.id = item
+    // })
 
     newTarget()
 }
@@ -149,38 +174,100 @@ function randInt(max){
 
 // create target sequence
 
+// function newTarget(){
+
+//     for(i in targetIds){
+//         document.getElementById(targetIds[i]).setAttribute("class", "off")
+
+//         if(randInt(2)==1){
+//             document.getElementById(targetIds[i]).setAttribute("class", "on")
+//         }
+//     }
+    
+//     resetButtons()
+// }
+
 function newTarget(){
 
-    for(i in targetIds){
-        document.getElementById(targetIds[i]).setAttribute("class", "off")
-
-        if(randInt(2)==1){
-            document.getElementById(targetIds[i]).setAttribute("class", "on")
-        }
-    }
+    buttonIds.forEach(id => {
+        targetStates.set(id, randInt(2))
+    })
     
+    // renderTargets()
     resetButtons()
 }
 
+// function renderTargets(){
+//     buttonIds.forEach(id =>{
+//         if(targetStates.get(id)==1){
+//             document.getElementById(id+"t").setAttribute("class", "on")
+//         }else{
+//             document.getElementById(id+"t").setAttribute("class", "off")
+//         }
+//     })    
+// }
 
 
 // Button press function
+// function toggle(buttonId){
+    
+//     const targetButtons = currentMap.get(buttonId)
+    
+//     targetButtons.forEach(item =>{
+//         currentButton = document.getElementById(item.toString(10))
+        
+//         let currentClass = currentButton.getAttribute("class")
+
+//         if(currentClass == "button-on"){
+//             currentButton.setAttribute("class","button-off")
+//         }else{
+//             currentButton.setAttribute("class", "button-on")
+//         }
+        
+//     })
+    
+//     checkSolve()
+// }
+
 function toggle(buttonId){
     
-    const targetButtons = currentMap.get(buttonId)
-    
-    targetButtons.forEach(item =>{
-        currentButton = document.getElementById(item.toString(10))        
-        if(currentButton.getAttribute("class") == "on"){
-            currentButton.setAttribute("class","off")
-        }else{
-            currentButton.setAttribute("class", "on")
-        }
-        
+    const toggleButtons = currentMap.get(buttonId).map(id => id.toString(10))
+   
+    toggleButtons.forEach(id => {
+        buttonStates.set(id, (buttonStates.get(id)+ 1) % 2)
     })
-    
+
+
+    // toggleButtons.forEach(item =>{
+    //     currentButton = document.getElementById(item)
+        
+    //     let currentClass = currentButton.getAttribute("class")
+
+    //     if(currentClass == "button-on"){
+    //         currentButton.setAttribute("class","button-off")
+    //     }else{
+    //         currentButton.setAttribute("class", "button-on")
+    //     }
+        
+    // })
+    renderButtons()
     checkSolve()
 }
+
+function renderButtons(){
+    buttonIds.forEach(id =>{
+        
+        document.getElementById(id).setAttribute("class", b10.get(buttonStates.get(id))+" "+t10.get(targetStates.get(id)))
+        
+        // if(buttonStates.get(id)==1){
+        //     document.getElementById(id).setAttribute("class", "button-on")
+        // }else{
+        //     document.getElementById(id).setAttribute("class", "button-off")
+        // }
+    })    
+}
+
+
 
 function checkSolve(){
     let i = 0
@@ -201,7 +288,11 @@ function checkSolve(){
 }
 
 function resetButtons(){
-    buttonIds.forEach(item =>{
-        document.getElementById(item).setAttribute("class", "off")
+    buttonStates.clear()
+
+    buttonIds.forEach(id =>{
+        buttonStates.set(id, 0)
     })
+
+    renderButtons()
 }
