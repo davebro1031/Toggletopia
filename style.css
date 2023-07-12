@@ -24,7 +24,7 @@ header{
 
 a{
     text-decoration: none;
-    color: black
+    color: #23008c
 }
 
 .navbar{
@@ -37,17 +37,19 @@ a{
 
 .nav-branding{
     font-size: 2rem;
+    color: #23008c;
 }
 
 .select{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 2px solid #18005f;
+    border: 2px solid #23008c;
     border-radius: 0.5em;
     padding: 0.5em;
     cursor: pointer;
     transition: background 0.3s;
+    margin: 2px;
 }
 
 /* selected style, added in js */
@@ -65,9 +67,10 @@ a{
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 6px solid #18005f;
+    border-top: 6px solid #23008c;
     transition: 0.3s;
-    padding: 0
+    padding: 0px;
+    margin: 2px
 }
 
 /* rotate styles - added in js */
@@ -77,7 +80,7 @@ a{
 
 .menu{
     list-style: none;
-    padding: 0.2em 0.5em;
+    padding: 0.1em 0.2em;
     background: #2ec5f7;
     border: 1px solid black;
     border-radius: 0.5em;
@@ -90,20 +93,22 @@ a{
 }
 
 .menu li{
-    padding: 0.7em 0.5em;
-    margin: 0.3em 0;
+    padding: 0.2em 0.2em;
+    margin: 0.2em 0;
     border-radius: 0.5em;
     cursor: pointer;
-    color: white
+    color: white;
+    display: flex;
+    align-items: center;
 }
 
-.menu li:hover{
+/* .menu li:hover{
     background:#5f2bfd;
-}
+} */
 
 /* Active styles (added in js) */
 .active{
-    background: #18005f
+    background: #23008c
 }
 
 /* open styles added in js */
@@ -124,54 +129,84 @@ a{
     padding: 5px
 }
 
+/* slider toggle styles */
 
-#buttons{
-    position:absolute;
-    top: 30%;
-    left: 5%;
-    width: 70%;
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 1.5em;
+    height: 1em;
+    margin: 5px;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
 
-    display:flex;
-    justify-content: space-around;
- }
-
- /* #targetSequence{
+.slider {
     position: absolute;
-    top: 50%;
-    left: 5%;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 0.9em;
+    width: 0.9em;
+    left: 0.05em;
+    bottom: 0.05em;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #23008c;
+}
+  
+/* input:focus + .slider {
+    box-shadow: 0 0 1px #23008c;
+} */
+  
+input:checked + .slider:before {
+    /* -webkit-transform: translateX(0.5em); */
+    /* -ms-transform: translateX(0.5em); */
+    transform: translateX(0.5em);
+}
+
+
+
+#board{
+    position:absolute;
+    top: 20%;
+    left: 15%;
     width: 70%;
 
     display:flex;
     justify-content: space-around;
- } */
-
-
- #reset{
-    position:absolute;
-    top: 30%;
-    left: 80%;
-    width: 3rem;
-    height: 0;
-    padding-top: 2%;
-    padding-bottom: 5%;
-
-    border: 1px black solid
  }
 
- #newPuzzle{
-    position:absolute;
-    top: 50%;
-    left: 80%;
-    width: 5.5rem;
-    height: 0;
-    padding-top: 2%;
-    padding-bottom: 5%;
+#reset{
+    position: absolute;
+    top: 21.3%;
+    left: 0%;
     border: 1px black solid
 
- }
+}
 
 .button-off{
-    background-color: #18005f;
+    background-color: #23008c;
     width: 9%;
     height: 0;
     padding-bottom: 8%;
@@ -185,44 +220,9 @@ a{
 }
 
 .target-off{
-    border: 5px solid #18005f
+    border: 5px solid #23008c
 }
 
 .target-on{
     border: 5px solid #2ec5f7
 }
-
-
- /* .off{
-    background-color: #18005f;
-    width: 9%;
-    height: 0;
-    padding-bottom: 9%;
-    border: 3px solid rgb(119, 119, 255)
- }
-
-.on{
-    background-color: #2ec5f7;
-    width: 9%;
-    height: 0;
-    padding-bottom: 9%;
-    border: 3px solid rgb(0, 81, 167)
- }
-
-
-
- .onSolved{
-    background-color: rgb(2, 131, 196);
-    width: 9%;
-    height: 0;
-    padding-bottom: 8%;
-    border: 0.3rem solid gold
- }
-
- .offSolved{
-    background-color: #18005f;
-    width: 9%;
-    height: 0;
-    padding-bottom: 8%;
-    border: 0.3rem solid gold
- } */

@@ -13,6 +13,7 @@
         <nav class = "navbar">
             <a href="#" class="nav-branding">Toggletopia</a>
             <div class = 'utilities'>
+
                 <div class = "dropdown">
                     <div class="select">
                         <span class = "selected">Medium</span>
@@ -25,33 +26,61 @@
                     </ul>
     
                 </div>
-                <div>
+
+                <div id = "hints">
+                    <div class="select">
+                        <span class = "selected">Hints</span>
+                    </div>
+                    <ul class = "menu">
+                        <li>
+                            <div>Mode 1</div>
+                            <label class = "switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </li>
+
+                        <li>
+                            <div>Mode 2</div>
+                            <label class = "switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </li>
+
+                        <li>
+                            <div>Mode 3</div>
+                            <label class = "switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="newPuzzle" class = "select" onclick="newTarget()">new puzzle</div>
+
+                <div class = "select">
                     info
                 </div>
-                <div>
-                    hints
-                </div>
+
+
+
+
+            
             </div>
 
 
         </nav>
     </header>
 
-    <button id = "reset" onclick = "resetButtons()">reset</button>
-    <button id="newPuzzle" onclick="newTarget()">new puzzle</button>
-
-    <div id = "board">
-
-        <div id = "buttons">
-        </div>
-
-
-        <div id = "targetSequence">
-        </div>
-
-
+    <div id = "game">
+        <div id = "board"></div>
+        <div id = "reset" onclick = "resetButtons()">reset</div>
+        
 
     </div>
+
 
 
 </body>
