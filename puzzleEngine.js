@@ -46,6 +46,15 @@ dropdowns.forEach(dropdown => {
 
 })
 
+const hints = document.getElementById('hints')
+
+const select = hints.querySelector('.select')
+const menu = hints.querySelector('.menu')
+
+select.addEventListener('click', () => {
+    select.classList.toggle('select-clicked')
+    menu.classList.toggle('menu-open')
+})
 
 // Create game maps
 
@@ -111,24 +120,18 @@ buttonIds.forEach(id =>{
 
 let targetStates = new Map();
 buttonIds.forEach(id => {
-    targetStates.set(id, 1)
+    targetStates.set(id, 0)
 })
-
-// Set the target IDs:
-// let targetIds = buttonIds.map(item => item+"t")
 
 function setDifficulty(choice){
     currentMap = choice   
     buttonIds = [...currentMap.keys()] 
 
-
-    // targetIds = buttonIds.map(item => item+"t")
-
     targetStates.clear()
     buttonStates.clear()
     
     // clear old buttonboard
-    let buttonboard = document.getElementById("buttons")
+    let buttonboard = document.getElementById("board")
     
     while(buttonboard.firstChild){
         buttonboard.removeChild(buttonboard.firstChild)
