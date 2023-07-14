@@ -166,7 +166,6 @@ a{
     left: 0.05em;
     bottom: 0.05em;
     background-color: white;
-    /* -webkit-transition: .4s; */
     transition: .4s;
     border-radius: 50%;
 }
@@ -175,13 +174,7 @@ input:checked + .slider {
     background-color: #23008c;
 }
   
-/* input:focus + .slider {
-    box-shadow: 0 0 1px #23008c;
-} */
-  
 input:checked + .slider:before {
-    /* -webkit-transform: translateX(0.5em); */
-    /* -ms-transform: translateX(0.5em); */
     transform: translateX(0.5em);
 }
 

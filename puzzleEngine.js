@@ -6,6 +6,8 @@ const b10 = new Map()
 b10.set(1, "button-on")
 b10.set(0, "button-off")
 
+let switchdiv = document.querySelector(".switchdiv")
+
 // Create Dropdown menu(s)
 
 const dropdowns = document.querySelectorAll('.dropdown')
@@ -191,15 +193,15 @@ function newTargetSequence(){
 function newTarget(){
     newTargetSequence()
     resetButtons()
+    renderSwitchStates()
     renderButtons()
 }
 
-switchdiv = document.querySelector(".switchdiv")
 
 function renderSwitchStates(){
     switchdiv.innerHTML = ""
     buttonIds.forEach(id =>{
-        switchdiv.innerText += switchStates.get(id).toString(10)
+        switchdiv.innerText += switchStates.get(id)
     })
 }
 
