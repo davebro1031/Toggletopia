@@ -26,6 +26,15 @@ dropdowns.forEach(dropdown => {
 
     })
 
+    // THIS DOESN'T WORK AND IDK WHY
+    // document.onclick = function(event){
+    //     if(!select.contains(event.target) && !menu.contains(event.target)){
+    //         select.classList.remove('select-clicked')
+    //         menu.classList.remove('menu-open')
+    //         caret.classList.remove('caret-rotate') 
+    //     }
+    // }
+
     options.forEach(option =>{
         option.addEventListener('click', () => {
             selected.innerText = option.innerText
@@ -46,6 +55,8 @@ dropdowns.forEach(dropdown => {
 
 })
 
+// Create hints menu
+
 const hints = document.getElementById('hints')
 
 const select = hints.querySelector('.select')
@@ -55,6 +66,15 @@ select.addEventListener('click', () => {
     select.classList.toggle('select-clicked')
     menu.classList.toggle('menu-open')
 })
+
+// Close menus when you click somewhere other than inside it
+
+document.onclick = function(event){
+    if(!select.contains(event.target) && !menu.contains(event.target)){
+        select.classList.remove('select-clicked')
+        menu.classList.remove('menu-open') 
+    }
+}
 
 // Create game maps
 
@@ -123,49 +143,32 @@ buttonIds.forEach(id => {
     targetStates.set(id, 0)
 })
 
+let switchStates = new Map();
+buttonIds.forEach(id => {
+    switchStates.set(id, 0)
+})
+
 function setDifficulty(choice){
     currentMap = choice   
     buttonIds = [...currentMap.keys()] 
-
-    targetStates.clear()
-    buttonStates.clear()
     
     // clear old buttonboard
-    let buttonboard = document.getElementById("board")
-    
-    while(buttonboard.firstChild){
-        buttonboard.removeChild(buttonboard.firstChild)
-    }
+    let board = document.getElementById("board")
+    board.innerHTML = ""
 
     // add new buttons
-    buttonIds.forEach(item =>{
-        let itemdiv = document.createElement("div")
-        buttonboard.append(itemdiv)
-        itemdiv.id = item
-        itemdiv.onclick = function() {toggle(item)}        
-
+    buttonIds.forEach(id =>{
+        let button = document.createElement("div")
+        board.append(button)
+        button.id = id
+        button.onclick = function() {toggle(id)}        
     })
-
-    // clear targetboard
-    // let targetboard = document.getElementById("targetSequence")
-    // while(targetboard.firstChild){
-    //     targetboard.removeChild(targetboard.firstChild)
-    // }
-
-    // create new targets
-    // targetIds.forEach(item =>{
-    //     let itemdiv = document.createElement("div")
-    //     targetboard.append(itemdiv)
-    //     itemdiv.className = "off"
-    //     itemdiv.id = item
-    // })
 
     newTarget()
 }
 
 // Default to medium difficulty when loading the page
 setDifficulty(gameMapS8)
-
 
 
 // Generate the levels
@@ -175,84 +178,45 @@ function randInt(max){
     return Math.floor(Math.random()*max)
 } 
 
-// create target sequence
+// create Target Sequence
+function newTargetSequence(){
 
-// function newTarget(){
-
-//     for(i in targetIds){
-//         document.getElementById(targetIds[i]).setAttribute("class", "off")
-
-//         if(randInt(2)==1){
-//             document.getElementById(targetIds[i]).setAttribute("class", "on")
-//         }
-//     }
-    
-//     resetButtons()
-// }
-
-function newTarget(){
-
+    targetStates.clear()
     buttonIds.forEach(id => {
         targetStates.set(id, randInt(2))
-    })
-    
-    // renderTargets()
-    resetButtons()
+    })   
 }
 
-// function renderTargets(){
-//     buttonIds.forEach(id =>{
-//         if(targetStates.get(id)==1){
-//             document.getElementById(id+"t").setAttribute("class", "on")
-//         }else{
-//             document.getElementById(id+"t").setAttribute("class", "off")
-//         }
-//     })    
-// }
+// Render New Targets
+function newTarget(){
+    newTargetSequence()
+    resetButtons()
+    renderButtons()
+}
+
+switchdiv = document.querySelector(".switchdiv")
+
+function renderSwitchStates(){
+    switchdiv.innerHTML = ""
+    buttonIds.forEach(id =>{
+        switchdiv.innerText += switchStates.get(id).toString(10)
+    })
+}
 
 
 // Button press function
-// function toggle(buttonId){
-    
-//     const targetButtons = currentMap.get(buttonId)
-    
-//     targetButtons.forEach(item =>{
-//         currentButton = document.getElementById(item.toString(10))
-        
-//         let currentClass = currentButton.getAttribute("class")
-
-//         if(currentClass == "button-on"){
-//             currentButton.setAttribute("class","button-off")
-//         }else{
-//             currentButton.setAttribute("class", "button-on")
-//         }
-        
-//     })
-    
-//     checkSolve()
-// }
 
 function toggle(buttonId){
     
+    switchStates.set(buttonId, (switchStates.get(buttonId)+ 1) % 2)
+    renderSwitchStates()
+
     const toggleButtons = currentMap.get(buttonId).map(id => id.toString(10))
    
     toggleButtons.forEach(id => {
         buttonStates.set(id, (buttonStates.get(id)+ 1) % 2)
     })
 
-
-    // toggleButtons.forEach(item =>{
-    //     currentButton = document.getElementById(item)
-        
-    //     let currentClass = currentButton.getAttribute("class")
-
-    //     if(currentClass == "button-on"){
-    //         currentButton.setAttribute("class","button-off")
-    //     }else{
-    //         currentButton.setAttribute("class", "button-on")
-    //     }
-        
-    // })
     renderButtons()
     checkSolve()
 }
@@ -262,40 +226,39 @@ function renderButtons(){
         
         document.getElementById(id).setAttribute("class", b10.get(buttonStates.get(id))+" "+t10.get(targetStates.get(id)))
         
-        // if(buttonStates.get(id)==1){
-        //     document.getElementById(id).setAttribute("class", "button-on")
-        // }else{
-        //     document.getElementById(id).setAttribute("class", "button-off")
-        // }
     })    
 }
 
 
-
 function checkSolve(){
-    let i = 0
-    while(i < buttonIds.length && document.getElementById(buttonIds[i]).getAttribute("class") == document.getElementById(targetIds[i]).getAttribute("class")){
-        console.log(i)
-        i++
-    }
+    let i = true
+    buttonIds.forEach(id =>{
+        i = i && (buttonStates.get(id) == targetStates.get(id))
+    })
 
-    if(i == buttonIds.length){
-        targetIds.forEach(item => {
-            if(document.getElementById(item).getAttribute("class") == "off"){
-                document.getElementById(item).setAttribute("class", "offSolved")
-            }else{
-                document.getElementById(item).setAttribute("class", "onSolved")
-            }
-        })
+    if(i){
+        solvedPuzzle()
     }
+}
+
+function solvedPuzzle(){
+    console.log("YOU SOLVED IT")
 }
 
 function resetButtons(){
     buttonStates.clear()
+    switchStates.clear()
 
     buttonIds.forEach(id =>{
         buttonStates.set(id, 0)
     })
 
-    renderButtons()
+    buttonIds.forEach(id =>{
+        switchStates.set(id, 0)
+    })
+}
+
+function switchStateToggle(){
+    let switchdiv = document.querySelector(".switchdiv")
+    switchdiv.classList.toggle('switches-display')
 }
