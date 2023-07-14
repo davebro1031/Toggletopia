@@ -7,6 +7,17 @@ b10.set(1, "button-on")
 b10.set(0, "button-off")
 
 let switchdiv = document.querySelector(".switchdiv")
+let distdiv = document.querySelector(".distance")
+
+function switchStateToggle(){
+    let switchdiv = document.querySelector(".switchdiv")
+    switchdiv.classList.toggle('switches-display')
+}
+
+function distanceToSolveToggle(){
+    let distdiv = document.querySelector(".distance")
+    distdiv.classList.toggle('distance-display')
+}
 
 // Create Dropdown menu(s)
 
@@ -126,12 +137,80 @@ gameMapS5.set('5', [3,4,5])
 
 
 
+// Map inverter function:  
+// Right now this is an extremely unintelligent/slow inverse search.
+// It just checks every possible combination of buttons
+
+function inverseMap(gameMap){
+    idList = [...gameMap.keys()]
+
+    gameMapSets = new Map()
+    idList.forEach(id=>{
+        gameMapSets.set(id, new Set(gameMap.get(id)))
+    })
+
+    const invMap = new Map();
+
+    for(i=0; i < 2**idList.length; i++){
+        
+        // Each number represents a possible combination of buttons
+        // Convert to binary and reverse the digits.  
+        // If some digit is 1, consider that button "on", if it is 0 or blank, consider it "off"
+        let num = ""
+        for(j in i.toString(2)){
+            num = i.toString(2)[j] + num
+        }
+
+        let outputSet = new Set()
+        for(j in num){
+
+            if(num[j]==1){
+                outputSet = symmetricDifference(outputSet, gameMapSets.get(idList[j]))
+            }
+        }
+        
+        // if the combination of buttons leads to a single button being turned on, this is useful
+        // we store this info in the inverse map
+        if(outputSet.size == 1){
+            let solveId = [...outputSet][0].toString(10)
+            let solveIdSet = new Set()
+
+            for(j in num){
+                if(num[j]==1){
+                    solveIdSet.add(idList[j])
+                }
+            }
+
+            invMap.set(solveId, solveIdSet)
+
+        }
+
+    }
+    return invMap
+}
+
+
+
+function symmetricDifference(setA, setB) {
+    const _difference = new Set(setA);
+    for (const elem of setB) {
+      if (_difference.has(elem)) {
+        _difference.delete(elem);
+      } else {
+        _difference.add(elem);
+      }
+    }
+    return _difference;
+  }
+
+
 
 
 // Choose the specific game map to be played
 
 // default
 let currentMap = gameMapS8
+let invCurrMap = inverseMap(currentMap)
 // Set button IDs:
 let buttonIds = [...currentMap.keys()]
 
@@ -151,7 +230,10 @@ buttonIds.forEach(id => {
 })
 
 function setDifficulty(choice){
-    currentMap = choice   
+    currentMap = choice
+    invCurrMap = inverseMap(currentMap)
+
+    // console.log(invCurrMap)
     buttonIds = [...currentMap.keys()] 
     
     // clear old buttonboard
@@ -189,12 +271,39 @@ function newTargetSequence(){
     })   
 }
 
+function solveTarget(){
+    let targetSolution = new Set()
+    buttonIds.forEach(id =>{
+        if(targetStates.get(id)==1){
+            targetSolution = symmetricDifference(targetSolution, invCurrMap.get(id))
+        }
+    })
+    return targetSolution
+}
+
+
+function distanceToSolve(targetSolution){
+    let currentSwitchStates = new Set()
+
+    buttonIds.forEach(id =>{
+        if(switchStates.get(id)==1){
+            currentSwitchStates.add(id)
+        }
+    })
+
+    document.getElementById("distanceToSolve").innerText = symmetricDifference(currentSwitchStates, targetSolution).size
+    console.log(symmetricDifference(currentSwitchStates, targetSolution).size)
+
+}
+
 // Render New Targets
 function newTarget(){
     newTargetSequence()
     resetButtons()
     renderSwitchStates()
     renderButtons()
+    console.log(solveTarget())
+    distanceToSolve(solveTarget())
 }
 
 
@@ -220,6 +329,7 @@ function toggle(buttonId){
     })
 
     renderButtons()
+    distanceToSolve(solveTarget())
     checkSolve()
 }
 
@@ -258,9 +368,4 @@ function resetButtons(){
     buttonIds.forEach(id =>{
         switchStates.set(id, 0)
     })
-}
-
-function switchStateToggle(){
-    let switchdiv = document.querySelector(".switchdiv")
-    switchdiv.classList.toggle('switches-display')
 }
