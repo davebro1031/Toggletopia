@@ -33,9 +33,9 @@
                     </div>
                     <ul class = "menu">
                         <li>
-                            <div>Mode 1</div>
+                            <div>Show Switches</div>
                             <label class = "switch">
-                                <input type="checkbox">
+                                <input type="checkbox" onclick = "switchStateToggle()">
                                 <span class="slider"></span>
                             </label>
                         </li>
@@ -76,10 +76,12 @@
 
     <div id = "game">
         <div id = "board"></div>
-        <div id = "reset" onclick = "resetButtons()">reset</div>
-        
+
+        <div class = "switchdiv"></div>
 
     </div>
+
+</div>
 
 
 

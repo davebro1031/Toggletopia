@@ -166,7 +166,6 @@ a{
     left: 0.05em;
     bottom: 0.05em;
     background-color: white;
-    -webkit-transition: .4s;
     transition: .4s;
     border-radius: 50%;
 }
@@ -175,27 +174,45 @@ input:checked + .slider {
     background-color: #23008c;
 }
   
-/* input:focus + .slider {
-    box-shadow: 0 0 1px #23008c;
-} */
-  
 input:checked + .slider:before {
-    /* -webkit-transform: translateX(0.5em); */
-    /* -ms-transform: translateX(0.5em); */
     transform: translateX(0.5em);
+}
+
+.switchdiv{
+    background: #2ec5f7;
+    border: 1px solid black;
+    border-radius: 0.5em;
+    opacity: 0;
+    display: none;
+    transition: 0.2s;
+    z-index: 1;
+}
+
+.switches-display{
+    display: block;
+    opacity: 1;
 }
 
 
 
-#board{
-    position:absolute;
-    top: 20%;
-    left: 15%;
-    width: 70%;
 
-    display:flex;
+#game{
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    width: 80%;
+}
+
+#board{
+    display: flex;
     justify-content: space-around;
  }
+
+#board>div{
+    aspect-ratio: 1/1;
+    margin: 0.4em;
+    width: 30%;
+}
 
 #reset{
     position: absolute;
@@ -205,24 +222,20 @@ input:checked + .slider:before {
 
 }
 
+
+
 .button-off{
     background-color: #23008c;
-    width: 9%;
-    height: 0;
-    padding-bottom: 8%;
 }
 
 .button-on{
     background-color:#2ec5f7;
-    width: 9%;
-    height: 0;
-    padding-bottom: 8%;
 }
 
 .target-off{
-    border: 5px solid #23008c
+    border: 1vw solid #23008c
 }
 
 .target-on{
-    border: 5px solid #2ec5f7
+    border: 1vw solid #2ec5f7
 }
