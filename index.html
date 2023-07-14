@@ -29,7 +29,7 @@
 
                 <div id = "hints">
                     <div class="select">
-                        <span class = "selected">Hints</span>
+                        <span class = "selected">Settings</span>
                     </div>
                     <ul class = "menu">
                         <li>
@@ -41,9 +41,9 @@
                         </li>
 
                         <li>
-                            <div>Mode 2</div>
+                            <div>Show Distance to Solve</div>
                             <label class = "switch">
-                                <input type="checkbox">
+                                <input type="checkbox" onclick = "distanceToSolveToggle()">
                                 <span class="slider"></span>
                             </label>
                         </li>
@@ -78,6 +78,13 @@
         <div id = "board"></div>
 
         <div class = "switchdiv"></div>
+
+        <div class = "distance">
+            <div>
+                Number of clicks to solve:
+            </div>
+            <div id = "distanceToSolve"></div>
+        </div>
 
     </div>
 
