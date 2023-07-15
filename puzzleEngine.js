@@ -70,22 +70,20 @@ dropdowns.forEach(dropdown => {
 
 // Create hints menu
 
-const hints = document.getElementById('hints')
+const settings = document.getElementById('settings')
 
-const select = hints.querySelector('.select')
-const menu = hints.querySelector('.menu')
+const settingsSelect = settings.querySelector('.settingsSelect')
+const settingsMenu = settings.querySelector('.settingsMenu')
 
-select.addEventListener('click', () => {
-    select.classList.toggle('select-clicked')
-    menu.classList.toggle('menu-open')
+settingsSelect.addEventListener('click', () => {
+    settingsMenu.classList.toggle('menu-open')
 })
 
 // Close menus when you click somewhere other than inside it
 
 document.onclick = function(event){
-    if(!select.contains(event.target) && !menu.contains(event.target)){
-        select.classList.remove('select-clicked')
-        menu.classList.remove('menu-open') 
+    if(!settingsSelect.contains(event.target) && !settingsMenu.contains(event.target)){
+        settingsMenu.classList.remove('menu-open') 
     }
 }
 
