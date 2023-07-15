@@ -14,6 +14,10 @@
             <a href="#" class="nav-branding">Toggletopia</a>
             <div class = 'utilities'>
 
+                <div class = "settingsSelect">
+                    <img src="info.png" class ="nav-img" alt="Info">
+                </div>
+
                 <div class = "dropdown">
                     <div class="select">
                         <span class = "selected">Medium</span>
@@ -26,12 +30,14 @@
                     </ul>
     
                 </div>
+                
+                <div id="newPuzzle" class = "select" onclick="newTarget()">new puzzle</div>
 
-                <div id = "hints">
-                    <div class="select">
-                        <span class = "selected">Settings</span>
+                <div id = "settings">
+                    <div class="settingsSelect">
+                        <img src="settingsGear.png" alt="Settings" class = "nav-img">
                     </div>
-                    <ul class = "menu">
+                    <ul class = "settingsMenu">
                         <li>
                             <div>Show Switches</div>
                             <label class = "switch">
@@ -57,13 +63,6 @@
                         </li>
                     </ul>
                 </div>
-
-                <div id="newPuzzle" class = "select" onclick="newTarget()">new puzzle</div>
-
-                <div class = "select">
-                    info
-                </div>
-
 
 
 

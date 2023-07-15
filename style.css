@@ -12,6 +12,10 @@ body{
     max-width: 1400px;
 }
 
+.utilities > *{
+    padding: 5px
+}
+
 *,
 *::before,
 *::after {
@@ -52,11 +56,10 @@ a{
     margin: 2px;
 }
 
-/* selected style, added in js */
-.select-clicked{
+
+/* .select-clicked{
     border: 2px gray solid;
-    /* background-color: gray; */
-}
+} */
 
 .select:hover{
     background-color: #2ec5f7;
@@ -82,7 +85,7 @@ a{
     list-style: none;
     padding: 0.1em 0.2em;
     background: #2ec5f7;
-    border: 1px solid black;
+    border: 2px solid #23008c;
     border-radius: 0.5em;
     opacity: 0;
     display: none;
@@ -107,18 +110,9 @@ a{
     background:#5f2bfd;
 } */
 
-/* Active styles (added in js) */
 .active{
     background: #23008c
 }
-
-/* open styles added in js */
-
-.menu-open{
-    display: block;
-    opacity: 1;
-}
-
 
 .utilities {
     display: flex;
@@ -126,8 +120,51 @@ a{
     align-items: center;
 }
 
-.utilities > *{
-    padding: 5px
+.nav-img{
+    width: 2em;
+}
+
+.settingsSelect{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin: 2px;
+}
+
+.settingsSelect:hover{
+    background-color: #2ec5f7;
+}
+
+.settingsMenu{
+    list-style: none;
+    padding: 0.1em 0.2em;
+    background: #2ec5f7;
+    border: 2px solid #23008c;
+    border-radius: 0.5em;
+    opacity: 0;
+    display: none;
+    transition: 0.2s;
+    z-index: 1;
+    position: absolute;
+    top: 3em;
+    width: 80%;
+    left:10%;
+}
+
+.settingsMenu li{
+    padding: 0.5em 0.2em;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-open{
+    display: block;
+    opacity: 1;
 }
 
 /* slider toggle styles */
