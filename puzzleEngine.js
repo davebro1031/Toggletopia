@@ -9,6 +9,7 @@ b10.set(0, "button-off")
 let buttonSet = new Set()
 let targetSet = new Set()
 let switchSet = new Set()
+let solutionSet = new Set()
 
 let currentMap = new Map()
 let invCurrMap = new Map()
@@ -244,16 +245,20 @@ function newTarget(){
     resetButtons()
     renderSwitchStates()
     renderButtons()
-    console.log(solveTarget())
-    distanceToSolve(solveTarget())
+    solveTarget()
+    // console.log("solutionSet", solutionSet)
+    distanceToSolve()
 } 
 
 // create Target Sequence
 function newTargetSequence(){
 
     targetSet.clear()
+    solutionSet.clear()
+
     targetStates.clear()
 
+    // REWRITE THIS
     buttonIds.forEach(id => {
         targetStates.set(id, randInt(2))
         if(targetStates.get(id)==1){
@@ -263,27 +268,21 @@ function newTargetSequence(){
 }
 
 function solveTarget(){
-    let targetSolution = new Set()
     buttonIds.forEach(id =>{
-        if(targetStates.get(id)==1){
-            targetSolution = symmetricDifference(targetSolution, invCurrMap.get(id))
+        if(targetSet.has(id)){
+            solutionSet = symmetricDifference(solutionSet, invCurrMap.get(id))
         }
     })
-    return targetSolution
 }
 
-
-function distanceToSolve(targetSolution){
-    let currentSwitchStates = new Set()
-
-    buttonIds.forEach(id =>{
-        if(switchStates.get(id)==1){
-            currentSwitchStates.add(id)
-        }
-    })
-
-    document.getElementById("distanceToSolve").innerText = symmetricDifference(currentSwitchStates, targetSolution).size
-    console.log(symmetricDifference(currentSwitchStates, targetSolution).size)
+function distanceToSolve(){
+    let dist = symmetricDifference(switchSet, solutionSet).size
+    
+    document.getElementById("distanceToSolve").innerText = dist
+    
+    if(dist==0){
+        solvedPuzzle()
+    }
 
 }
 
@@ -299,6 +298,8 @@ function renderSwitchStates(){
 
 function toggle(buttonId){
     
+    switchSet = symmetricDifference(switchSet, buttonId)
+
     switchStates.set(buttonId, (switchStates.get(buttonId)+ 1) % 2)
     renderSwitchStates()
 
@@ -309,8 +310,7 @@ function toggle(buttonId){
     })
 
     renderButtons()
-    distanceToSolve(solveTarget())
-    checkSolve()
+    distanceToSolve()
 }
 
 function renderButtons(){
@@ -321,18 +321,6 @@ function renderButtons(){
     })    
 }
 
-
-function checkSolve(){
-    let i = true
-    buttonIds.forEach(id =>{
-        i = i && (buttonStates.get(id) == targetStates.get(id))
-    })
-
-    if(i){
-        solvedPuzzle()
-    }
-}
-
 function solvedPuzzle(){
     console.log("YOU SOLVED IT")
 }
@@ -340,6 +328,8 @@ function solvedPuzzle(){
 function resetButtons(){
     buttonStates.clear()
     switchStates.clear()
+
+    switchSet.clear()
 
     buttonIds.forEach(id =>{
         buttonStates.set(id, 0)
