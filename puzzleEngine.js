@@ -18,6 +18,7 @@ let buttonStates = new Map();
 let targetStates = new Map();
 let switchStates = new Map();
 
+// symmetric different for sets
 function symmetricDifference(setA, setB) {
     const _difference = new Set(setA);
     for (const elem of setB) {
@@ -28,6 +29,11 @@ function symmetricDifference(setA, setB) {
       }
     }
     return _difference;
+}
+
+// random integer generator 
+function randInt(max){
+    return Math.floor(Math.random()*max)
 }
 
 let switchdiv = document.querySelector(".switchdiv")
@@ -161,6 +167,7 @@ gameMapS5.set('5', [3,4,5])
 // Right now this is an extremely unintelligent/slow inverse search.
 // It just checks every possible combination of buttons
 
+// takes in a Map (str -> arr), returns a Map (str -> set)
 function inverseMap(gameMap){
     idList = [...gameMap.keys()]
 
@@ -207,10 +214,6 @@ function inverseMap(gameMap){
 }
 
 
-
-
-
-
 // Choose the specific game map to be played
 
 function setDifficulty(choice){
@@ -220,7 +223,7 @@ function setDifficulty(choice){
     // console.log(invCurrMap)
     buttonIds = [...currentMap.keys()] 
     
-    // clear old buttonboard
+    // clear old game board
     let board = document.getElementById("board")
     board.innerHTML = ""
 
@@ -235,19 +238,27 @@ function setDifficulty(choice){
     newTarget()
 }
 
-// Generate the levels
-
-// random integer generator 
-function randInt(max){
-    return Math.floor(Math.random()*max)
+// Render New Targets
+function newTarget(){
+    newTargetSequence()
+    resetButtons()
+    renderSwitchStates()
+    renderButtons()
+    console.log(solveTarget())
+    distanceToSolve(solveTarget())
 } 
 
 // create Target Sequence
 function newTargetSequence(){
 
+    targetSet.clear()
     targetStates.clear()
+
     buttonIds.forEach(id => {
         targetStates.set(id, randInt(2))
+        if(targetStates.get(id)==1){
+            targetSet.add(id)
+        }
     })   
 }
 
@@ -275,17 +286,6 @@ function distanceToSolve(targetSolution){
     console.log(symmetricDifference(currentSwitchStates, targetSolution).size)
 
 }
-
-// Render New Targets
-function newTarget(){
-    newTargetSequence()
-    resetButtons()
-    renderSwitchStates()
-    renderButtons()
-    console.log(solveTarget())
-    distanceToSolve(solveTarget())
-}
-
 
 function renderSwitchStates(){
     switchdiv.innerHTML = ""
