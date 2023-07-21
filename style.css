@@ -240,13 +240,10 @@ input:checked + .slider:before {
     justify-content: space-around;
  }
 
-#board>div{
+.default{
     aspect-ratio: 1/1;
     margin: 0.4em;
     width: 30%;
-}
-
-.default{
     background-color: #23008c;
     border: 1vw solid #23008c;
     border-radius: 2vw;
@@ -258,4 +255,8 @@ input:checked + .slider:before {
 
 .target-on{
     border-color: #2ec5f7;
+}
+
+.highlight{
+    opacity: 0.5;
 }
