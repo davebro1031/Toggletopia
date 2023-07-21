@@ -265,28 +265,16 @@ input:checked + .slider:before {
     width: 30%;
 }
 
-#reset{
-    position: absolute;
-    top: 21.3%;
-    left: 0%;
-    border: 1px black solid
-
-}
-
-
-
-.button-off{
+.default{
     background-color: #23008c;
+    border: 1vw solid #23008c;
+    border-radius: 2vw;
 }
 
 .button-on{
     background-color:#2ec5f7;
 }
 
-.target-off{
-    border: 1vw solid #23008c
-}
-
 .target-on{
-    border: 1vw solid #2ec5f7
+    border-color: #2ec5f7;
 }
