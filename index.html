@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puzzle Game</title>
+    <title>Toggletopia</title>
     <script src="puzzleEngine.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,15 +12,15 @@
     <header>
         <nav class = "navbar">
             <a href="#" class="nav-branding">Toggletopia</a>
-            
+
             <div class = 'utilities'>
 
-                <div class = "settingsSelect">
-                    <img src="info.png" class ="nav-img" alt="Info">
+                <div class = "utilities-item utilities-icon">
+                    <img src="info.png" class ="nav-icon" alt="Info">
                 </div>
 
                 <div class = "dropdown">
-                    <div class="select">
+                    <div class="utilities-item select">
                         <span class = "selected">Medium</span>
                         <div class="caret"></div>
                     </div>
@@ -29,17 +29,16 @@
                         <li onclick = setDifficulty(gameMapS8) class = "active">Medium</li>
                         <li onclick = setDifficulty(gameMapSPM)>Hard</li>
                     </ul>
-    
                 </div>
                 
-                <div class="settingsSelect">
-                    <img src="shuffle.png" alt="new puzzle" class = "nav-img" onclick="newTarget()">
+                <div class="utilities-item utilities-icon">
+                    <img src="shuffle.png" alt="new puzzle" class = "nav-icon" onclick="newTarget()">
                 </div>
                 <!-- <div id="newPuzzle" class = "select" onclick="newTarget()">new puzzle</div> -->
 
                 <div id = "settings">
-                    <div class="settingsSelect">
-                        <img src="settingsGear.png" alt="Settings" class = "nav-img">
+                    <div class="utilities-item utilities-icon settingsSelect">
+                        <img src="settingsGear.png" alt="Settings" class = "nav-icon">
                     </div>
                     <ul class = "settingsMenu">
                         <li>
@@ -79,14 +78,14 @@
     <div id = "game">
         <div id = "board"></div>
 
-        <div class = "switchdiv"></div>
-
         <div class = "distance">
             <div>
                 Number of clicks to solve:
             </div>
             <div id = "distanceToSolve"></div>
         </div>
+
+        <div class = "switchdiv"></div>
 
     </div>
 
