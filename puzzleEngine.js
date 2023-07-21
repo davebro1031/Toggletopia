@@ -1,11 +1,3 @@
-const t10 = new Map()
-t10.set(1, "target-on")
-t10.set(0, "target-off")
-
-const b10 = new Map()
-b10.set(1, "button-on")
-b10.set(0, "button-off")
-
 let buttonSet = new Set()
 let targetSet = new Set()
 let switchSet = new Set()
@@ -13,11 +5,8 @@ let solutionSet = new Set()
 
 let currentMap = new Map()
 let invCurrMap = new Map()
-let buttonIds = []
 
-let buttonStates = new Map();
-let targetStates = new Map();
-let switchStates = new Map();
+let buttonIds = []
 
 // symmetric different for sets
 function symmetricDifference(setA, setB) {
@@ -233,6 +222,7 @@ function setDifficulty(choice){
         let button = document.createElement("div")
         board.append(button)
         button.id = id
+        button.setAttribute("class", "default")
         button.onclick = function() {toggle(id)}        
     })
 
@@ -242,11 +232,9 @@ function setDifficulty(choice){
 // Render New Targets
 function newTarget(){
     newTargetSequence()
+    solveTarget()
     resetButtons()
     renderSwitchStates()
-    renderButtons()
-    solveTarget()
-    // console.log("solutionSet", solutionSet)
     distanceToSolve()
 } 
 
@@ -256,13 +244,12 @@ function newTargetSequence(){
     targetSet.clear()
     solutionSet.clear()
 
-    targetStates.clear()
-
-    // REWRITE THIS
     buttonIds.forEach(id => {
-        targetStates.set(id, randInt(2))
-        if(targetStates.get(id)==1){
+        document.getElementById(id).classList.remove("target-on")
+
+        if(randInt(2)==1){
             targetSet.add(id)
+            document.getElementById(id).classList.add("target-on")
         }
     })   
 }
@@ -275,69 +262,44 @@ function solveTarget(){
     })
 }
 
-function distanceToSolve(){
-    let dist = symmetricDifference(switchSet, solutionSet).size
-    
-    document.getElementById("distanceToSolve").innerText = dist
-    
-    if(dist==0){
-        solvedPuzzle()
-    }
+function resetButtons(){
+    switchSet.clear()
 
+    buttonIds.forEach(id =>{
+        document.getElementById(id).classList.remove("button-on")
+    })
 }
 
 function renderSwitchStates(){
     switchdiv.innerHTML = ""
-    buttonIds.forEach(id =>{
-        switchdiv.innerText += switchStates.get(id)
+    switchSet.forEach(id =>{
+        switchdiv.innerText += id
     })
 }
 
-
 // Button press function
-
 function toggle(buttonId){
     
     switchSet = symmetricDifference(switchSet, buttonId)
-
-    switchStates.set(buttonId, (switchStates.get(buttonId)+ 1) % 2)
-    renderSwitchStates()
-
-    const toggleButtons = currentMap.get(buttonId).map(id => id.toString(10))
-   
-    toggleButtons.forEach(id => {
-        buttonStates.set(id, (buttonStates.get(id)+ 1) % 2)
+    const toggleButtons = currentMap.get(buttonId).map(id => `${id}`)
+       toggleButtons.forEach(id => {
+        document.getElementById(id).classList.toggle("button-on")
     })
 
-    renderButtons()
+    renderSwitchStates()
     distanceToSolve()
 }
 
-function renderButtons(){
-    buttonIds.forEach(id =>{
-        
-        document.getElementById(id).setAttribute("class", b10.get(buttonStates.get(id))+" "+t10.get(targetStates.get(id)))
-        
-    })    
+function distanceToSolve(){
+    let dist = symmetricDifference(switchSet, solutionSet).size
+    document.getElementById("distanceToSolve").innerText = dist
+    if(dist==0){
+        solvedPuzzle()
+    }
 }
 
 function solvedPuzzle(){
     console.log("YOU SOLVED IT")
-}
-
-function resetButtons(){
-    buttonStates.clear()
-    switchStates.clear()
-
-    switchSet.clear()
-
-    buttonIds.forEach(id =>{
-        buttonStates.set(id, 0)
-    })
-
-    buttonIds.forEach(id =>{
-        switchStates.set(id, 0)
-    })
 }
 
 
