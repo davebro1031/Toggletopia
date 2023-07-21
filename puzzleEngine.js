@@ -8,6 +8,8 @@ let invCurrMap = new Map()
 
 let buttonIds = []
 
+let hover = false
+
 // symmetric different for sets
 function symmetricDifference(setA, setB) {
     const _difference = new Set(setA);
@@ -38,6 +40,27 @@ function switchStateToggle(){
 function distanceToSolveToggle(){
     let distdiv = document.querySelector(".distance")
     distdiv.classList.toggle('distance-display')
+}
+
+function hoverEffectToggle(){
+    hover = !(hover)
+
+    buttonIds.forEach(id =>{
+        let button = document.getElementById(id)
+        
+        if(hover){
+            button.onmouseenter = function() {buttonHover(id)}
+            button.onmouseleave = function() {buttonHoverOff(id)}
+        }else{
+            console.log(hover)
+            // why doesnt this code below work??
+            // button.removeEventListener("mouseenter", function() {buttonHover()})
+            // button.removeEventListener("mouseleave", function() {buttonHoverOff()})
+            button.onmouseenter = ""
+            button.onmouseleave = ""
+        }
+        
+    })
 }
 
 // Create Dropdown menu(s)
@@ -223,7 +246,11 @@ function setDifficulty(choice){
         board.append(button)
         button.id = id
         button.setAttribute("class", "default")
-        button.onclick = function() {toggle(id)}        
+        button.onclick = function() {toggle(id)} 
+        if(hover){
+            button.onmouseenter = function() {buttonHover(id)}
+            button.onmouseleave = function() {buttonHoverOff(id)}
+        }      
     })
 
     newTarget()
@@ -288,6 +315,23 @@ function toggle(buttonId){
 
     renderSwitchStates()
     distanceToSolve()
+}
+
+// Button hover over function
+
+function buttonHover(buttonId){
+
+    const toggleButtons = currentMap.get(buttonId).map(id => `${id}`)
+       toggleButtons.forEach(id => {
+        document.getElementById(id).classList.add("highlight")
+    })
+}
+
+function buttonHoverOff(buttonId){
+    const toggleButtons = currentMap.get(buttonId).map(id => `${id}`)
+       toggleButtons.forEach(id => {
+        document.getElementById(id).classList.remove("highlight")
+    })
 }
 
 function distanceToSolve(){
