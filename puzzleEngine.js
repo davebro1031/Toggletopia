@@ -28,6 +28,7 @@ function randInt(max){
 
 let switchdiv = document.querySelector(".switchdiv")
 let distdiv = document.querySelector(".distance")
+let board = document.getElementById("board")
 
 function switchStateToggle(){
     let switchdiv = document.querySelector(".switchdiv")
@@ -214,7 +215,6 @@ function setDifficulty(choice){
     buttonIds = [...currentMap.keys()] 
     
     // clear old game board
-    let board = document.getElementById("board")
     board.innerHTML = ""
 
     // add new buttons
