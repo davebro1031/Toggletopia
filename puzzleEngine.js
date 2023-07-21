@@ -6,6 +6,30 @@ const b10 = new Map()
 b10.set(1, "button-on")
 b10.set(0, "button-off")
 
+let buttonSet = new Set()
+let targetSet = new Set()
+let switchSet = new Set()
+
+let currentMap = new Map()
+let invCurrMap = new Map()
+let buttonIds = []
+
+let buttonStates = new Map();
+let targetStates = new Map();
+let switchStates = new Map();
+
+function symmetricDifference(setA, setB) {
+    const _difference = new Set(setA);
+    for (const elem of setB) {
+      if (_difference.has(elem)) {
+        _difference.delete(elem);
+      } else {
+        _difference.add(elem);
+      }
+    }
+    return _difference;
+}
+
 let switchdiv = document.querySelector(".switchdiv")
 let distdiv = document.querySelector(".distance")
 
@@ -133,8 +157,6 @@ gameMapS5.set('3', [2,3,5])
 gameMapS5.set('4', [1,4,5])
 gameMapS5.set('5', [3,4,5])
 
-
-
 // Map inverter function:  
 // Right now this is an extremely unintelligent/slow inverse search.
 // It just checks every possible combination of buttons
@@ -178,54 +200,18 @@ function inverseMap(gameMap){
                     solveIdSet.add(idList[j])
                 }
             }
-
             invMap.set(solveId, solveIdSet)
-
         }
-
     }
     return invMap
 }
 
 
 
-function symmetricDifference(setA, setB) {
-    const _difference = new Set(setA);
-    for (const elem of setB) {
-      if (_difference.has(elem)) {
-        _difference.delete(elem);
-      } else {
-        _difference.add(elem);
-      }
-    }
-    return _difference;
-  }
-
 
 
 
 // Choose the specific game map to be played
-
-// default
-let currentMap = gameMapS8
-let invCurrMap = inverseMap(currentMap)
-// Set button IDs:
-let buttonIds = [...currentMap.keys()]
-
-let buttonStates = new Map();
-buttonIds.forEach(id =>{
-    buttonStates.set(id, 0)
-})
-
-let targetStates = new Map();
-buttonIds.forEach(id => {
-    targetStates.set(id, 0)
-})
-
-let switchStates = new Map();
-buttonIds.forEach(id => {
-    switchStates.set(id, 0)
-})
 
 function setDifficulty(choice){
     currentMap = choice
@@ -248,10 +234,6 @@ function setDifficulty(choice){
 
     newTarget()
 }
-
-// Default to medium difficulty when loading the page
-setDifficulty(gameMapS8)
-
 
 // Generate the levels
 
@@ -367,3 +349,11 @@ function resetButtons(){
         switchStates.set(id, 0)
     })
 }
+
+
+function init(){
+    // Default to medium difficulty when loading the page
+    setDifficulty(gameMapS8)
+}
+
+init()
