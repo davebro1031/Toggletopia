@@ -119,20 +119,20 @@
                 <div class="default button-on"></div>
                 <div class="default target-on"></div>
                 <div class="default"></div>
-                <div class="default button-on target-on"></div>
                 <div class="default button-on"></div>
+                <div class="default button-on target-on"></div>
             </div>
             <li>Here is that SAME puzzle, now solved:</li>
             <div class = "miniboard">
                 <div class="default"></div>
                 <div class="default button-on target-on"></div>
                 <div class="default"></div>
-                <div class="default button-on target-on"></div>
                 <div class="default"></div>
+                <div class="default button-on target-on"></div>
             </div>
             <li>Notice that the borders do not change colors.</li>
             <li>This is a puzzle game, so the rest is for you to discover!</li>
-            <li>(jk - if you need help, check the settings menu)</li>
+            <li>(just kidding - if you need help, check the settings menu)</li>
         </ul>
     </div>
 
@@ -141,6 +141,14 @@
         <footer>
             <img class = "solve-icon" src="shuffle.png" alt="" onclick="newTarget()">
             <img src="close.png" alt="" class="solve-icon" onclick="closeSolve()">
+        </footer>
+    </div>
+
+    <div class="failMessage">
+        <p>You failed</p>
+        <footer>
+            <img src="restart.png" alt="" class="fail-icon" onclick="restartPuzzle()">
+            <img class = "fail-icon" src="shuffle.png" alt="" onclick="newTarget()">
         </footer>
     </div>
 
