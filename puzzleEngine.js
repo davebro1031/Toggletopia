@@ -67,6 +67,11 @@ function hoverEffectToggle(){
     })
 }
 
+function moveLimitToggle(){
+    moves = !(moves)
+    resetMovesRemaining()
+}
+
 function showHelp(){
     if(movesRemaining==0){
         return
@@ -315,8 +320,7 @@ function resetButtons(){
     
     solved = false;
 
-    movesRemaining = buttonIds.length
-    document.getElementById("movesRemaining").innerText = `${movesRemaining}`
+    resetMovesRemaining()
 
     buttonIds.forEach(id =>{
         document.getElementById(id).classList.remove("button-on")
@@ -332,13 +336,19 @@ function renderSwitchStates(){
 
 // Button press function
 function toggle(buttonId){
-    
-    if(movesRemaining==0 || solved){
+    if(solved){
         return
     }
+    
+    if(moves){
 
-    movesRemaining -= 1
-    document.getElementById("movesRemaining").innerText = `${movesRemaining}`
+        if(movesRemaining==0){
+            return
+        }
+
+        movesRemaining -= 1
+        document.getElementById("movesRemaining").innerText = `${movesRemaining}`
+    }
 
     switchSet = symmetricDifference(switchSet, buttonId)
 
@@ -407,6 +417,17 @@ function failedPuzzle(){
 
 function closeFail(){
     failMessage.classList.remove("fail-show")
+}
+
+function resetMovesRemaining(){
+    if(moves){
+        movesRemaining = buttonIds.length
+        document.getElementById("movesRemaining").innerText = `${movesRemaining}`
+
+    }else{
+        movesRemaining = -1
+        document.getElementById("movesRemaining").innerText = "∞"
+    }
 }
 
 function restartPuzzle(){

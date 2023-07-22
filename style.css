@@ -358,6 +358,7 @@ input:checked + .slider:before {
     background-color: var(--off-color);
     border: 1vw solid var(--off-color);
     border-radius: 2vw;
+    cursor: pointer;
 }
 
 .button-on{
