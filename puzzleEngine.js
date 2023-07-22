@@ -9,13 +9,16 @@ let invCurrMap = new Map()
 let buttonIds = []
 
 let hover = false
+let moves = true
+let solved = false
 let movesRemaining = 0
 
-let switchdiv = document.querySelector(".switchdiv")
-let distdiv = document.querySelector(".distance")
-let board = document.getElementById("board")
-let helpBox = document.querySelector(".helpBox")
-let solveMessage = document.querySelector(".solveMessage")
+const switchdiv = document.querySelector(".switchdiv")
+const distdiv = document.querySelector(".distance")
+const board = document.getElementById("board")
+const helpBox = document.querySelector(".helpBox")
+const solveMessage = document.querySelector(".solveMessage")
+const failMessage = document.querySelector(".failMessage")
 
 // symmetric different for sets
 function symmetricDifference(setA, setB) {
@@ -266,6 +269,7 @@ function setDifficulty(choice){
 // Render New Targets
 function newTarget(){
     closeSolve()
+    closeFail()
     newTargetSequence()
     solveTarget()
     resetButtons()
@@ -383,11 +387,18 @@ function closeSolve(){
 }
 
 function failedPuzzle(){
-    console.log('you failed')
+    failMessage.classList.add("fail-show")
 }
 
 function closeFail(){
-    console.log('you failed')
+    failMessage.classList.remove("fail-show")
+}
+
+function restartPuzzle(){
+    closeFail()
+    resetButtons()
+    renderSwitchStates()
+    distanceToSolve()
 }
 
 function init(){
