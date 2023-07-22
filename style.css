@@ -1,3 +1,8 @@
+:root{
+    --off-color: rgb(35, 0, 140);
+    --on-color: rgb(43, 196, 247);
+}
+
 html{
     font-family: 100;
     line-height: 1.5rem;
@@ -22,11 +27,6 @@ header{
     background-color: #7dd7f6
 }
 
-a{
-    text-decoration: none;
-    color: #23008c
-}
-
 .navbar{
     min-height: 70px;
     display: flex;
@@ -35,9 +35,14 @@ a{
     padding: 0 24px;
 }
 
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
 .nav-branding{
     font-size: 2rem;
-    color: #23008c;
+    color: var(--off-color);
 }
 
 .utilities {
@@ -58,7 +63,7 @@ a{
 }
 
 .utilities-item:hover{
-    background-color: #2ec5f7;
+    background-color: var(--on-color);
 }
 
 .utilities-icon{
@@ -74,7 +79,7 @@ a{
 }
 
 .select{
-    border: 2px solid #23008c;
+    border: 2px solid var(--off-color);
     border-radius: 0.5em;
     padding: 0.5em;
 }
@@ -88,7 +93,7 @@ a{
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 6px solid #23008c;
+    border-top: 6px solid var(--off-color);
     transition: 0.3s;
     padding: 0px;
     margin: 4px
@@ -101,8 +106,8 @@ a{
 .menu{
     list-style: none;
     padding: 0.1em 0.2em;
-    background: #2ec5f7;
-    border: 2px solid #23008c;
+    background: var(--on-color);
+    border: 2px solid var(--off-color);
     border-radius: 0.5em;
     display: none;
     transition: 0.2s;
@@ -126,15 +131,15 @@ a{
 } */
 
 .active{
-    background: #23008c
+    background: var(--off-color)
 }
 
 .settingsMenu{
     list-style: none;
     display: none;
     padding: 0.1em 0.2em;
-    background: #2ec5f7;
-    border: 2px solid #23008c;
+    background: var(--on-color);
+    border: 2px solid var(--off-color);
     border-radius: 0.5em;
     transition: 0.2s;
     z-index: 1;
@@ -198,7 +203,7 @@ a{
 }
 
 input:checked + .slider {
-    background-color: #23008c;
+    background-color: var(--off-color);
 }
   
 input:checked + .slider:before {
@@ -244,19 +249,23 @@ input:checked + .slider:before {
     aspect-ratio: 1/1;
     margin: 0.4em;
     width: 30%;
-    background-color: #23008c;
-    border: 1vw solid #23008c;
+    background-color: var(--off-color);
+    border: 1vw solid var(--off-color);
     border-radius: 2vw;
 }
 
 .button-on{
-    background-color:#2ec5f7;
+    background-color:var(--on-color);
 }
 
 .target-on{
-    border-color: #2ec5f7;
+    border-color: var(--on-color);
 }
 
-.highlight{
-    opacity: 0.5;
+.highlight-on{
+    background-color: rgba(46,197,247,0.3)
+}
+
+.highlight-off{
+    background-color: rgba(35,0,140,0.5);
 }
