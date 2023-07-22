@@ -1,17 +1,16 @@
-let buttonSet = new Set()
-let targetSet = new Set()
-let switchSet = new Set()
-let solutionSet = new Set()
+let buttonSet = new Set()  // tracks which buttons are on
+let targetSet = new Set()  // contains which borders are on
+let solutionSet = new Set()  // contains which buttons need to be pressed
+let switchSet = new Set()  // tracks which buttons have been pressed
 
 let currentMap = new Map()
 let invCurrMap = new Map()
 
 let buttonIds = []
-
-let hover = false
-let moves = true
-let solved = false
-let movesRemaining = 0
+let hover = false // if true, then hover effects will function
+let moves = true // if true, then moves will be limited 
+let movesRemaining = -1 
+let solved = false // activated when the puzzle is solved
 
 const switchdiv = document.querySelector(".switchdiv")
 const distdiv = document.querySelector(".distance")
@@ -69,6 +68,9 @@ function hoverEffectToggle(){
 }
 
 function showHelp(){
+    if(movesRemaining==0){
+        return
+    }
     closeSolve()
     helpBox.classList.toggle("help-open")
 }
@@ -84,6 +86,9 @@ const options = dropdown.querySelectorAll('.menu li')
 const selected = dropdown.querySelector('.selected')
 
 select.addEventListener('click', () => {
+    if(movesRemaining==0){
+        return
+    }
     closeSolve()
     // select.classList.toggle('select-clicked')
     caret.classList.toggle('caret-rotate')
@@ -120,6 +125,9 @@ const settingsSelect = settings.querySelector('.settingsSelect')
 const settingsMenu = settings.querySelector('.settingsMenu')
 
 settingsSelect.addEventListener('click', () => {
+    if(movesRemaining==0){
+        return
+    }
     closeSolve()
     settingsMenu.classList.toggle('menu-open')
 })
@@ -304,6 +312,8 @@ function solveTarget(){
 function resetButtons(){
     switchSet.clear()
     buttonSet.clear()
+    
+    solved = false;
 
     movesRemaining = buttonIds.length
     document.getElementById("movesRemaining").innerText = `${movesRemaining}`
@@ -323,6 +333,10 @@ function renderSwitchStates(){
 // Button press function
 function toggle(buttonId){
     
+    if(movesRemaining==0 || solved){
+        return
+    }
+
     movesRemaining -= 1
     document.getElementById("movesRemaining").innerText = `${movesRemaining}`
 
@@ -380,6 +394,7 @@ function distanceToSolve(){
 
 function solvedPuzzle(){
     solveMessage.classList.add("solve-show")
+    solved = true;
 }
 
 function closeSolve(){
