@@ -10,6 +10,11 @@ let buttonIds = []
 
 let hover = false
 
+let switchdiv = document.querySelector(".switchdiv")
+let distdiv = document.querySelector(".distance")
+let board = document.getElementById("board")
+let helpBox = document.querySelector(".helpBox")
+
 // symmetric different for sets
 function symmetricDifference(setA, setB) {
     const _difference = new Set(setA);
@@ -28,17 +33,13 @@ function randInt(max){
     return Math.floor(Math.random()*max)
 }
 
-let switchdiv = document.querySelector(".switchdiv")
-let distdiv = document.querySelector(".distance")
-let board = document.getElementById("board")
-
 function switchStateToggle(){
-    let switchdiv = document.querySelector(".switchdiv")
+    // let switchdiv = document.querySelector(".switchdiv")
     switchdiv.classList.toggle('switches-display')
 }
 
 function distanceToSolveToggle(){
-    let distdiv = document.querySelector(".distance")
+    // let distdiv = document.querySelector(".distance")
     distdiv.classList.toggle('distance-display')
 }
 
@@ -52,7 +53,6 @@ function hoverEffectToggle(){
             button.onmouseenter = function() {buttonHover(id)}
             button.onmouseleave = function() {buttonHoverOff(id)}
         }else{
-            console.log(hover)
             // why doesnt this code below work??
             // button.removeEventListener("mouseenter", function() {buttonHover()})
             // button.removeEventListener("mouseleave", function() {buttonHoverOff()})
@@ -61,6 +61,10 @@ function hoverEffectToggle(){
         }
         
     })
+}
+
+function showHelp(){
+    helpBox.classList.toggle("menu-open")
 }
 
 // Create Dropdown menu(s)
@@ -128,6 +132,9 @@ settingsSelect.addEventListener('click', () => {
 document.onclick = function(event){
     if(!settingsSelect.contains(event.target) && !settingsMenu.contains(event.target)){
         settingsMenu.classList.remove('menu-open') 
+    }
+    if(!helpBox.contains(event.target) && !document.getElementById("info").contains(event.target)){
+        helpBox.classList.remove("menu-open")
     }
 }
 
@@ -247,6 +254,7 @@ function setDifficulty(choice){
         button.id = id
         button.setAttribute("class", "default")
         button.onclick = function() {toggle(id)} 
+        
         if(hover){
             button.onmouseenter = function() {buttonHover(id)}
             button.onmouseleave = function() {buttonHoverOff(id)}
@@ -291,6 +299,7 @@ function solveTarget(){
 
 function resetButtons(){
     switchSet.clear()
+    buttonSet.clear()
 
     buttonIds.forEach(id =>{
         document.getElementById(id).classList.remove("button-on")
@@ -308,10 +317,18 @@ function renderSwitchStates(){
 function toggle(buttonId){
     
     switchSet = symmetricDifference(switchSet, buttonId)
+
     const toggleButtons = currentMap.get(buttonId).map(id => `${id}`)
-       toggleButtons.forEach(id => {
+    toggleButtons.forEach(id => {
         document.getElementById(id).classList.toggle("button-on")
+        buttonSet = symmetricDifference(buttonSet, id)
     })
+
+    if(hover){
+        buttonHoverOff(buttonId)
+        buttonHover(buttonId)
+    }
+
 
     renderSwitchStates()
     distanceToSolve()
@@ -322,15 +339,22 @@ function toggle(buttonId){
 function buttonHover(buttonId){
 
     const toggleButtons = currentMap.get(buttonId).map(id => `${id}`)
-       toggleButtons.forEach(id => {
-        document.getElementById(id).classList.add("highlight")
+    toggleButtons.forEach(id => {
+        let button = document.getElementById(id)
+        if(buttonSet.has(id)){
+            button.classList.add("highlight-on")    
+        }else{
+            button.classList.add("highlight-off")
+        }
     })
 }
 
 function buttonHoverOff(buttonId){
     const toggleButtons = currentMap.get(buttonId).map(id => `${id}`)
-       toggleButtons.forEach(id => {
-        document.getElementById(id).classList.remove("highlight")
+    toggleButtons.forEach(id => {
+        let button = document.getElementById(id)
+        button.classList.remove("highlight-on")
+        button.classList.remove("highlight-off")
     })
 }
 
