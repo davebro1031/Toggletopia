@@ -301,6 +301,9 @@ function resetButtons(){
     switchSet.clear()
     buttonSet.clear()
 
+    movesRemaining = buttonIds.length
+    document.getElementById("movesRemaining").innerText = `${movesRemaining}`
+
     buttonIds.forEach(id =>{
         document.getElementById(id).classList.remove("button-on")
     })
@@ -316,6 +319,9 @@ function renderSwitchStates(){
 // Button press function
 function toggle(buttonId){
     
+    movesRemaining -= 1
+    document.getElementById("movesRemaining").innerText = `${movesRemaining}`
+
     switchSet = symmetricDifference(switchSet, buttonId)
 
     const toggleButtons = currentMap.get(buttonId).map(id => `${id}`)
@@ -363,6 +369,8 @@ function distanceToSolve(){
     document.getElementById("distanceToSolve").innerText = dist
     if(dist==0){
         solvedPuzzle()
+    }else if(movesRemaining==0){
+        failedPuzzle()
     }
 }
 
@@ -372,6 +380,14 @@ function solvedPuzzle(){
 
 function closeSolve(){
     solveMessage.classList.remove("solve-show")
+}
+
+function failedPuzzle(){
+    console.log('you failed')
+}
+
+function closeFail(){
+    console.log('you failed')
 }
 
 function init(){
