@@ -14,6 +14,7 @@ let switchdiv = document.querySelector(".switchdiv")
 let distdiv = document.querySelector(".distance")
 let board = document.getElementById("board")
 let helpBox = document.querySelector(".helpBox")
+let solveMessage = document.querySelector(".solveMessage")
 
 // symmetric different for sets
 function symmetricDifference(setA, setB) {
@@ -64,57 +65,48 @@ function hoverEffectToggle(){
 }
 
 function showHelp(){
+    closeSolve()
     helpBox.classList.toggle("help-open")
 }
 
 // Create Dropdown menu(s)
 
-const dropdowns = document.querySelectorAll('.dropdown')
+const dropdown = document.querySelector('.dropdown')
 
-dropdowns.forEach(dropdown => {
-    const select = dropdown.querySelector('.select')
-    const caret = dropdown.querySelector('.caret')
-    const menu = dropdown.querySelector('.menu')
-    const options = dropdown.querySelectorAll('.menu li')
-    const selected = dropdown.querySelector('.selected')
+const select = dropdown.querySelector('.select')
+const caret = dropdown.querySelector('.caret')
+const menu = dropdown.querySelector('.menu')
+const options = dropdown.querySelectorAll('.menu li')
+const selected = dropdown.querySelector('.selected')
 
-    select.addEventListener('click', () => {
-        select.classList.toggle('select-clicked')
-        
-        caret.classList.toggle('caret-rotate')
-
-        menu.classList.toggle('menu-open')
-
-    })
-
-    // THIS DOESN'T WORK AND IDK WHY
-    // document.onclick = function(event){
-    //     if(!select.contains(event.target) && !menu.contains(event.target)){
-    //         select.classList.remove('select-clicked')
-    //         menu.classList.remove('menu-open')
-    //         caret.classList.remove('caret-rotate') 
-    //     }
-    // }
-
-    options.forEach(option =>{
-        option.addEventListener('click', () => {
-            selected.innerText = option.innerText
-
-            select.classList.remove('select-clicked')
-
-            caret.classList.remove('caret-rotate')
-
-            menu.classList.remove('menu-open')
-
-            options.forEach(option => {
-                option.classList.remove('active')
-            })
-
-            option.classList.add('active')
-        })
-    })
+select.addEventListener('click', () => {
+    closeSolve()
+    // select.classList.toggle('select-clicked')
+    caret.classList.toggle('caret-rotate')
+    menu.classList.toggle('menu-open')
 
 })
+
+document.onclick = function(event){
+
+}
+
+options.forEach(option =>{
+    option.addEventListener('click', () => {
+        selected.innerText = option.innerText
+
+        // select.classList.remove('select-clicked')
+        caret.classList.remove('caret-rotate')
+        menu.classList.remove('menu-open')
+
+        options.forEach(option => {
+            option.classList.remove('active')
+        })
+
+        option.classList.add('active')
+    })
+})
+
 
 // Create hints menu
 
@@ -124,6 +116,7 @@ const settingsSelect = settings.querySelector('.settingsSelect')
 const settingsMenu = settings.querySelector('.settingsMenu')
 
 settingsSelect.addEventListener('click', () => {
+    closeSolve()
     settingsMenu.classList.toggle('menu-open')
 })
 
@@ -135,6 +128,11 @@ document.onclick = function(event){
     }
     if(!helpBox.contains(event.target) && !document.getElementById("info").contains(event.target)){
         helpBox.classList.remove("help-open")
+    }
+    if(!select.contains(event.target) && !menu.contains(event.target)){
+        select.classList.remove('select-clicked')
+        menu.classList.remove('menu-open')
+        caret.classList.remove('caret-rotate') 
     }
 }
 
@@ -266,6 +264,7 @@ function setDifficulty(choice){
 
 // Render New Targets
 function newTarget(){
+    closeSolve()
     newTargetSequence()
     solveTarget()
     resetButtons()
@@ -367,9 +366,12 @@ function distanceToSolve(){
 }
 
 function solvedPuzzle(){
-    console.log("YOU SOLVED IT")
+    solveMessage.classList.add("solve-show")
 }
 
+function closeSolve(){
+    solveMessage.classList.remove("solve-show")
+}
 
 function init(){
     // Default to medium difficulty when loading the page

@@ -253,6 +253,41 @@ input:checked + .slider:before {
     width: 60%;
 }
 
+.solveMessage{
+    border: 3px #ffbb00 solid;
+    border-radius: 0.5em;
+    background-color: #ffd700;
+    position: absolute;
+    top: 30%;
+    left:20%;
+    width: 8em;
+    text-align: center;
+    font-size: 2em;
+    display: none;
+}
+
+.solveMessage>p{
+    margin: 0;
+    padding: 0.5em 0.1em
+}
+
+.solveMessage>footer{
+    float: right
+}
+
+.solve-icon{
+    width: 1em;
+}
+
+.solve-icon:hover{
+    background-color: #ff9900;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.solve-show{
+    display: block;
+}
 
 #game{
     position: absolute;
