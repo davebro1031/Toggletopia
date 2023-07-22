@@ -32,6 +32,10 @@
                 </div>
                 
                 <div class="utilities-item utilities-icon">
+                    <img src="restart.png" alt="" class="nav-icon" onclick="restartPuzzle()">
+                </div>
+
+                <div class="utilities-item utilities-icon">
                     <img src="shuffle.png" alt="new puzzle" class = "nav-icon" onclick="newTarget()">
                 </div>
                 <!-- <div id="newPuzzle" class = "select" onclick="newTarget()">new puzzle</div> -->
@@ -139,7 +143,8 @@
     <div class="solveMessage">
         <p>You solved it!</p>
         <footer>
-            <img class = "solve-icon" src="shuffle.png" alt="" onclick="newTarget()">
+            <img src="restart.png" alt="" class="solve-icon" onclick="restartPuzzle()">
+            <img src="shuffle.png" alt="" class = "solve-icon" onclick="newTarget()">
             <img src="close.png" alt="" class="solve-icon" onclick="closeSolve()">
         </footer>
     </div>
@@ -148,7 +153,8 @@
         <p>You failed</p>
         <footer>
             <img src="restart.png" alt="" class="fail-icon" onclick="restartPuzzle()">
-            <img class = "fail-icon" src="shuffle.png" alt="" onclick="newTarget()">
+            <img src="shuffle.png" alt="" class = "fail-icon" onclick="newTarget()">
+            <img src="close.png" alt="" class="fail-icon" onclick="closeFail()">
         </footer>
     </div>
 

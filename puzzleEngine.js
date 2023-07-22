@@ -73,9 +73,7 @@ function moveLimitToggle(){
 }
 
 function showHelp(){
-    if(movesRemaining==0){
-        return
-    }
+    closeFail()
     closeSolve()
     helpBox.classList.toggle("help-open")
 }
@@ -91,9 +89,7 @@ const options = dropdown.querySelectorAll('.menu li')
 const selected = dropdown.querySelector('.selected')
 
 select.addEventListener('click', () => {
-    if(movesRemaining==0){
-        return
-    }
+    closeFail()
     closeSolve()
     // select.classList.toggle('select-clicked')
     caret.classList.toggle('caret-rotate')
@@ -130,9 +126,7 @@ const settingsSelect = settings.querySelector('.settingsSelect')
 const settingsMenu = settings.querySelector('.settingsMenu')
 
 settingsSelect.addEventListener('click', () => {
-    if(movesRemaining==0){
-        return
-    }
+    closeFail()
     closeSolve()
     settingsMenu.classList.toggle('menu-open')
 })
@@ -339,7 +333,7 @@ function toggle(buttonId){
     if(solved){
         return
     }
-    
+
     if(moves){
 
         if(movesRemaining==0){
@@ -432,6 +426,7 @@ function resetMovesRemaining(){
 
 function restartPuzzle(){
     closeFail()
+    closeSolve()
     resetButtons()
     renderSwitchStates()
     distanceToSolve()
