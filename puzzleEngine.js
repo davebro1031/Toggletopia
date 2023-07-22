@@ -14,6 +14,7 @@ let switchdiv = document.querySelector(".switchdiv")
 let distdiv = document.querySelector(".distance")
 let board = document.getElementById("board")
 let helpBox = document.querySelector(".helpBox")
+let solveMessage = document.querySelector(".solveMessage")
 
 // symmetric different for sets
 function symmetricDifference(setA, setB) {
@@ -64,6 +65,7 @@ function hoverEffectToggle(){
 }
 
 function showHelp(){
+    closeSolve()
     helpBox.classList.toggle("help-open")
 }
 
@@ -79,10 +81,9 @@ dropdowns.forEach(dropdown => {
     const selected = dropdown.querySelector('.selected')
 
     select.addEventListener('click', () => {
+        closeSolve()
         select.classList.toggle('select-clicked')
-        
         caret.classList.toggle('caret-rotate')
-
         menu.classList.toggle('menu-open')
 
     })
@@ -124,6 +125,7 @@ const settingsSelect = settings.querySelector('.settingsSelect')
 const settingsMenu = settings.querySelector('.settingsMenu')
 
 settingsSelect.addEventListener('click', () => {
+    closeSolve()
     settingsMenu.classList.toggle('menu-open')
 })
 
@@ -266,6 +268,7 @@ function setDifficulty(choice){
 
 // Render New Targets
 function newTarget(){
+    closeSolve()
     newTargetSequence()
     solveTarget()
     resetButtons()
@@ -367,8 +370,18 @@ function distanceToSolve(){
 }
 
 function solvedPuzzle(){
-    console.log("YOU SOLVED IT")
+    solveMessage.classList.add("solve-show")
 }
+
+function closeSolve(){
+    solveMessage.classList.remove("solve-show")
+}
+
+function newTargetSolve(){
+    newTarget()
+}
+
+
 
 
 function init(){

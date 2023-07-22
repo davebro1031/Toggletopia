@@ -263,6 +263,7 @@ input:checked + .slider:before {
     width: 8em;
     text-align: center;
     font-size: 2em;
+    display: none;
 }
 
 .solveMessage>p{
@@ -282,6 +283,10 @@ input:checked + .slider:before {
     background-color: #ff9900;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.solve-show{
+    display: block;
 }
 
 #game{
