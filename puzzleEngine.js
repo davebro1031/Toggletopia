@@ -10,6 +10,11 @@ let buttonIds = []
 
 let hover = false
 
+let switchdiv = document.querySelector(".switchdiv")
+let distdiv = document.querySelector(".distance")
+let board = document.getElementById("board")
+let helpBox = document.querySelector(".helpBox")
+
 // symmetric different for sets
 function symmetricDifference(setA, setB) {
     const _difference = new Set(setA);
@@ -28,17 +33,13 @@ function randInt(max){
     return Math.floor(Math.random()*max)
 }
 
-let switchdiv = document.querySelector(".switchdiv")
-let distdiv = document.querySelector(".distance")
-let board = document.getElementById("board")
-
 function switchStateToggle(){
-    let switchdiv = document.querySelector(".switchdiv")
+    // let switchdiv = document.querySelector(".switchdiv")
     switchdiv.classList.toggle('switches-display')
 }
 
 function distanceToSolveToggle(){
-    let distdiv = document.querySelector(".distance")
+    // let distdiv = document.querySelector(".distance")
     distdiv.classList.toggle('distance-display')
 }
 
@@ -60,6 +61,10 @@ function hoverEffectToggle(){
         }
         
     })
+}
+
+function showHelp(){
+    helpBox.classList.toggle("menu-open")
 }
 
 // Create Dropdown menu(s)
@@ -127,6 +132,9 @@ settingsSelect.addEventListener('click', () => {
 document.onclick = function(event){
     if(!settingsSelect.contains(event.target) && !settingsMenu.contains(event.target)){
         settingsMenu.classList.remove('menu-open') 
+    }
+    if(!helpBox.contains(event.target) && !document.getElementById("info").contains(event.target)){
+        helpBox.classList.remove("menu-open")
     }
 }
 
