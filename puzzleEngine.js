@@ -64,7 +64,7 @@ function hoverEffectToggle(){
 }
 
 function showHelp(){
-    helpBox.classList.toggle("menu-open")
+    helpBox.classList.toggle("help-open")
 }
 
 // Create Dropdown menu(s)
@@ -134,7 +134,7 @@ document.onclick = function(event){
         settingsMenu.classList.remove('menu-open') 
     }
     if(!helpBox.contains(event.target) && !document.getElementById("info").contains(event.target)){
-        helpBox.classList.remove("menu-open")
+        helpBox.classList.remove("help-open")
     }
 }
 

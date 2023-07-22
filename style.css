@@ -158,6 +158,10 @@ a{
     justify-content: space-between;
 }
 
+.menu-open{
+    display: block;
+}
+
 /* slider toggle styles */
 
 .switch {
@@ -229,15 +233,24 @@ input:checked + .slider:before {
 }
 
 .helpBox{
-    border: 2px black solid;
-    background-color: rgb(212, 254, 2);
+    border: 3px var(--off-color) solid;
+    border-radius: 0.5em;
+    background-color: rgb(194, 240, 255);
     position: absolute;
     top: 4em;
     left: 10%;
     width: 80%;
     display: none;
+    line-height: 2em;
+}
 
+.help-open{
+    display:block;
+}
 
+.miniboard{
+    display: flex;
+    width: 60%;
 }
 
 
@@ -276,8 +289,4 @@ input:checked + .slider:before {
 
 .highlight-off{
     background-color: rgba(35,0,140,0.5);
-}
-
-.menu-open{
-    display: block;
 }
