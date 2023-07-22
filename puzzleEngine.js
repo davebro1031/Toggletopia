@@ -9,6 +9,7 @@ let invCurrMap = new Map()
 let buttonIds = []
 
 let hover = false
+let movesRemaining = 0
 
 let switchdiv = document.querySelector(".switchdiv")
 let distdiv = document.querySelector(".distance")

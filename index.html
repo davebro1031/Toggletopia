@@ -83,6 +83,12 @@
     </header>
 
     <div id = "game">
+
+        <div id = "moves">
+            <p>Moves Remaining:</p>
+            <p id = "movesRemaining">8</p>
+        </div>
+
         <div id = "board"></div>
 
         <div class = "distance">
@@ -93,14 +99,6 @@
         </div>
 
         <div class = "switchdiv"></div>
-
-        <div class="solveMessage">
-            <p>You solved it!</p>
-            <footer>
-                <img class = "solve-icon" src="shuffle.png" alt="" onclick="newTarget()">
-                <img src="close.png" alt="" class="solve-icon" onclick="closeSolve()">
-            </footer>
-        </div>
 
     </div>
     
@@ -129,6 +127,13 @@
         </ul>
     </div>
 
+    <div class="solveMessage">
+        <p>You solved it!</p>
+        <footer>
+            <img class = "solve-icon" src="shuffle.png" alt="" onclick="newTarget()">
+            <img src="close.png" alt="" class="solve-icon" onclick="closeSolve()">
+        </footer>
+    </div>
 
 
 </body>

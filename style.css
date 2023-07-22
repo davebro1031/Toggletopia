@@ -266,6 +266,21 @@ input:checked + .slider:before {
     display: none;
 }
 
+#moves{
+    font-size: 1.3em;
+    display: flex;
+}
+
+#moves>p{
+    padding:0.5em 0.2em;
+    margin:0;
+}
+
+#movesRemaining{
+    color: red;
+}
+
+
 .solveMessage>p{
     margin: 0;
     padding: 0.5em 0.1em
@@ -290,10 +305,9 @@ input:checked + .slider:before {
 }
 
 #game{
-    position: absolute;
-    left: 10%;
-    top: 20%;
     width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #board{
