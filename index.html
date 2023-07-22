@@ -32,6 +32,10 @@
                 </div>
                 
                 <div class="utilities-item utilities-icon">
+                    <img src="restart.png" alt="" class="nav-icon" onclick="restartPuzzle()">
+                </div>
+
+                <div class="utilities-item utilities-icon">
                     <img src="shuffle.png" alt="new puzzle" class = "nav-icon" onclick="newTarget()">
                 </div>
                 <!-- <div id="newPuzzle" class = "select" onclick="newTarget()">new puzzle</div> -->
@@ -66,6 +70,14 @@
                         </li>
 
                         <li>
+                            <div>Limit moves</div>
+                            <label class = "switch">
+                                <input type="checkbox" checked onclick = "moveLimitToggle()">
+                                <span class="slider"></span>
+                            </label>
+                        </li>
+
+                        <li>
                             <div>Contact me</div>
                             <a href="mailto:dwbroaddus@gmail.com">email</a>
                         </li>
@@ -83,6 +95,12 @@
     </header>
 
     <div id = "game">
+
+        <div id = "moves">
+            <p>Moves Remaining:</p>
+            <p id = "movesRemaining">8</p>
+        </div>
+
         <div id = "board"></div>
 
         <div class = "distance">
@@ -93,14 +111,6 @@
         </div>
 
         <div class = "switchdiv"></div>
-
-        <div class="solveMessage">
-            <p>You solved it!</p>
-            <footer>
-                <img class = "solve-icon" src="shuffle.png" alt="" onclick="newTarget()">
-                <img src="close.png" alt="" class="solve-icon" onclick="closeSolve()">
-            </footer>
-        </div>
 
     </div>
     
@@ -113,22 +123,40 @@
                 <div class="default button-on"></div>
                 <div class="default target-on"></div>
                 <div class="default"></div>
-                <div class="default button-on target-on"></div>
                 <div class="default button-on"></div>
+                <div class="default button-on target-on"></div>
             </div>
             <li>Here is that SAME puzzle, now solved:</li>
             <div class = "miniboard">
                 <div class="default"></div>
                 <div class="default button-on target-on"></div>
                 <div class="default"></div>
-                <div class="default button-on target-on"></div>
                 <div class="default"></div>
+                <div class="default button-on target-on"></div>
             </div>
             <li>Notice that the borders do not change colors.</li>
             <li>This is a puzzle game, so the rest is for you to discover!</li>
+            <li>(just kidding - if you need help, check the settings menu)</li>
         </ul>
     </div>
 
+    <div class="solveMessage">
+        <p>You solved it!</p>
+        <footer>
+            <img src="restart.png" alt="" class="solve-icon" onclick="restartPuzzle()">
+            <img src="shuffle.png" alt="" class = "solve-icon" onclick="newTarget()">
+            <img src="close.png" alt="" class="solve-icon" onclick="closeSolve()">
+        </footer>
+    </div>
+
+    <div class="failMessage">
+        <p>You failed</p>
+        <footer>
+            <img src="restart.png" alt="" class="fail-icon" onclick="restartPuzzle()">
+            <img src="shuffle.png" alt="" class = "fail-icon" onclick="newTarget()">
+            <img src="close.png" alt="" class="fail-icon" onclick="closeFail()">
+        </footer>
+    </div>
 
 
 </body>

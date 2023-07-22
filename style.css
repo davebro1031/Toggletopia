@@ -5,9 +5,10 @@
 
 html{
     font-family: 100;
-    line-height: 1.5rem;
+    line-height: 1.5em;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 3vw;
 }
 
 body{
@@ -91,12 +92,12 @@ a{
 .caret{
     width: 0;
     height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 6px solid var(--off-color);
+    border-left: 0.3em solid transparent;
+    border-right: 0.3em solid transparent;
+    border-top: 0.4em solid var(--off-color);
     transition: 0.3s;
-    padding: 0px;
-    margin: 4px
+    padding: 0;
+    margin: 0.3em;
 }
 
 .caret-rotate {
@@ -253,12 +254,26 @@ input:checked + .slider:before {
     width: 60%;
 }
 
+#moves{
+    font-size: 1.3em;
+    display: flex;
+}
+
+#moves>p{
+    padding:0.5em 0.2em;
+    margin:0;
+}
+
+#movesRemaining{
+    color: red;
+}
+
 .solveMessage{
     border: 3px #ffbb00 solid;
     border-radius: 0.5em;
     background-color: #ffd700;
     position: absolute;
-    top: 30%;
+    top: 50%;
     left:20%;
     width: 8em;
     text-align: center;
@@ -289,11 +304,47 @@ input:checked + .slider:before {
     display: block;
 }
 
-#game{
+.failMessage{
+    border: 3px #a50000 solid;
+    border-radius: 0.5em;
+    background-color: #ff7979;
     position: absolute;
-    left: 10%;
-    top: 20%;
+    top: 50%;
+    left:20%;
+    width: 8em;
+    text-align: center;
+    font-size: 2em;
+    display: none;
+}
+
+.failMessage>p{
+    margin: 0;
+    padding: 0.5em 0.1em
+}
+
+.failMessage>footer{
+    float: right
+}
+
+.fail-icon{
+    width: 1em;
+}
+
+.fail-icon:hover{
+    background-color: #ff0000;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.fail-show{
+    display: block;
+}
+
+
+#game{
     width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #board{
@@ -308,6 +359,7 @@ input:checked + .slider:before {
     background-color: var(--off-color);
     border: 1vw solid var(--off-color);
     border-radius: 2vw;
+    cursor: pointer;
 }
 
 .button-on{

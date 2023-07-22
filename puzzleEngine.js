@@ -1,20 +1,23 @@
-let buttonSet = new Set()
-let targetSet = new Set()
-let switchSet = new Set()
-let solutionSet = new Set()
+let buttonSet = new Set()  // tracks which buttons are on
+let targetSet = new Set()  // contains which borders are on
+let solutionSet = new Set()  // contains which buttons need to be pressed
+let switchSet = new Set()  // tracks which buttons have been pressed
 
 let currentMap = new Map()
 let invCurrMap = new Map()
 
 let buttonIds = []
+let hover = false // if true, then hover effects will function
+let moves = true // if true, then moves will be limited 
+let movesRemaining = -1 
+let solved = false // activated when the puzzle is solved
 
-let hover = false
-
-let switchdiv = document.querySelector(".switchdiv")
-let distdiv = document.querySelector(".distance")
-let board = document.getElementById("board")
-let helpBox = document.querySelector(".helpBox")
-let solveMessage = document.querySelector(".solveMessage")
+const switchdiv = document.querySelector(".switchdiv")
+const distdiv = document.querySelector(".distance")
+const board = document.getElementById("board")
+const helpBox = document.querySelector(".helpBox")
+const solveMessage = document.querySelector(".solveMessage")
+const failMessage = document.querySelector(".failMessage")
 
 // symmetric different for sets
 function symmetricDifference(setA, setB) {
@@ -64,7 +67,13 @@ function hoverEffectToggle(){
     })
 }
 
+function moveLimitToggle(){
+    moves = !(moves)
+    resetMovesRemaining()
+}
+
 function showHelp(){
+    closeFail()
     closeSolve()
     helpBox.classList.toggle("help-open")
 }
@@ -80,6 +89,7 @@ const options = dropdown.querySelectorAll('.menu li')
 const selected = dropdown.querySelector('.selected')
 
 select.addEventListener('click', () => {
+    closeFail()
     closeSolve()
     // select.classList.toggle('select-clicked')
     caret.classList.toggle('caret-rotate')
@@ -116,6 +126,7 @@ const settingsSelect = settings.querySelector('.settingsSelect')
 const settingsMenu = settings.querySelector('.settingsMenu')
 
 settingsSelect.addEventListener('click', () => {
+    closeFail()
     closeSolve()
     settingsMenu.classList.toggle('menu-open')
 })
@@ -265,6 +276,7 @@ function setDifficulty(choice){
 // Render New Targets
 function newTarget(){
     closeSolve()
+    closeFail()
     newTargetSequence()
     solveTarget()
     resetButtons()
@@ -299,6 +311,10 @@ function solveTarget(){
 function resetButtons(){
     switchSet.clear()
     buttonSet.clear()
+    
+    solved = false;
+
+    resetMovesRemaining()
 
     buttonIds.forEach(id =>{
         document.getElementById(id).classList.remove("button-on")
@@ -314,7 +330,20 @@ function renderSwitchStates(){
 
 // Button press function
 function toggle(buttonId){
-    
+    if(solved){
+        return
+    }
+
+    if(moves){
+
+        if(movesRemaining==0){
+            return
+        }
+
+        movesRemaining -= 1
+        document.getElementById("movesRemaining").innerText = `${movesRemaining}`
+    }
+
     switchSet = symmetricDifference(switchSet, buttonId)
 
     const toggleButtons = currentMap.get(buttonId).map(id => `${id}`)
@@ -362,15 +391,45 @@ function distanceToSolve(){
     document.getElementById("distanceToSolve").innerText = dist
     if(dist==0){
         solvedPuzzle()
+    }else if(movesRemaining==0){
+        failedPuzzle()
     }
 }
 
 function solvedPuzzle(){
     solveMessage.classList.add("solve-show")
+    solved = true;
 }
 
 function closeSolve(){
     solveMessage.classList.remove("solve-show")
+}
+
+function failedPuzzle(){
+    failMessage.classList.add("fail-show")
+}
+
+function closeFail(){
+    failMessage.classList.remove("fail-show")
+}
+
+function resetMovesRemaining(){
+    if(moves){
+        movesRemaining = buttonIds.length
+        document.getElementById("movesRemaining").innerText = `${movesRemaining}`
+
+    }else{
+        movesRemaining = -1
+        document.getElementById("movesRemaining").innerText = "∞"
+    }
+}
+
+function restartPuzzle(){
+    closeFail()
+    closeSolve()
+    resetButtons()
+    renderSwitchStates()
+    distanceToSolve()
 }
 
 function init(){
