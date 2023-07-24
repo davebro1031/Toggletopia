@@ -171,6 +171,8 @@ Injective means that each of the 2^8 possible combinations of button clicks
 corresponds to a unique sequence of on/off buttons (of which there are 2^8)
 
 This means that each of the possible puzzles is solveable
+
+This game map is 3-colorable, but NOT 2-colorable (bipartite)
 */
 
 const gameMapS8 = new Map();
@@ -193,6 +195,20 @@ gameMapS5.set('3', [2,3,5])
 gameMapS5.set('4', [1,4,5])
 gameMapS5.set('5', [3,4,5])
 
+// 5-regular graph:
+
+const testMap = new Map();
+
+testMap.set('1', [1, 2, 3, 4, 5, 6, 7]) 
+testMap.set('2', [2, 3, 4, 5, 6, 7, 8])
+testMap.set('3', [3, 4, 5, 6, 7, 8, 9])
+testMap.set('4', [4, 5, 6, 7, 8, 9, 10]) 
+testMap.set('5', [5, 6, 7, 8, 9, 10, 1])
+testMap.set('6', [6, 7, 8, 9, 10, 1, 2])
+testMap.set('7', [7, 8, 9, 10, 1, 2, 3]) 
+testMap.set('8', [8, 9, 10, 1, 2, 3, 4]) 
+testMap.set('9', [9, 10, 1, 2, 3, 4, 5]) 
+testMap.set('10', [10, 1, 2, 3, 4, 5, 6])
 // Map inverter function:  
 // Right now this is an extremely unintelligent/slow inverse search.
 // It just checks every possible combination of buttons
@@ -249,6 +265,7 @@ function inverseMap(gameMap){
 function setDifficulty(choice){
     currentMap = choice
     invCurrMap = inverseMap(currentMap)
+    console.log(invCurrMap)
 
     // console.log(invCurrMap)
     buttonIds = [...currentMap.keys()] 
@@ -344,12 +361,12 @@ function toggle(buttonId){
         document.getElementById("movesRemaining").innerText = `${movesRemaining}`
     }
 
-    switchSet = symmetricDifference(switchSet, buttonId)
+    switchSet = symmetricDifference(switchSet, [buttonId])
 
     const toggleButtons = currentMap.get(buttonId).map(id => `${id}`)
     toggleButtons.forEach(id => {
         document.getElementById(id).classList.toggle("button-on")
-        buttonSet = symmetricDifference(buttonSet, id)
+        buttonSet = symmetricDifference(buttonSet, [id])
     })
 
     if(hover){
