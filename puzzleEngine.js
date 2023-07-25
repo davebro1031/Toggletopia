@@ -122,8 +122,8 @@ options.forEach(option =>{
 
 const settings = document.getElementById('settings')
 
-const settingsSelect = settings.querySelector('.settingsSelect')
-const settingsMenu = settings.querySelector('.settingsMenu')
+const settingsSelect = document.querySelector('.settingsSelect')
+const settingsMenu = document.querySelector('.settingsMenu')
 
 settingsSelect.addEventListener('click', () => {
     closeFail()

@@ -24,7 +24,7 @@
                         <span class = "selected">Medium</span>
                         <div class="caret"></div>
                     </div>
-                    <ul class = "menu">
+                    <ul class = "menu popup">
                         <li onclick = setDifficulty(gameMapS5)>Easy</li>
                         <li onclick = setDifficulty(gameMapS8) class = "active">Medium</li>
                         <li onclick = setDifficulty(gameMapSPM)>Hard</li>
@@ -45,49 +45,6 @@
                     <div class="utilities-item utilities-icon settingsSelect">
                         <img src="settingsGear.png" alt="Settings" class = "nav-icon">
                     </div>
-                    <ul class = "settingsMenu">
-                        <li>
-                            <div>Show Switches</div>
-                            <label class = "switch">
-                                <input type="checkbox" onclick = "switchStateToggle()">
-                                <span class="slider"></span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <div>Show Distance to Solve</div>
-                            <label class = "switch">
-                                <input type="checkbox" onclick = "distanceToSolveToggle()">
-                                <span class="slider"></span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <div>Hover Effects</div>
-                            <label class = "switch">
-                                <input type="checkbox" onclick = "hoverEffectToggle()">
-                                <span class="slider"></span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <div>Limit moves</div>
-                            <label class = "switch">
-                                <input type="checkbox" checked onclick = "moveLimitToggle()">
-                                <span class="slider"></span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <div>Contact me</div>
-                            <a href="mailto:dwbroaddus@gmail.com">email</a>
-                        </li>
-
-                        <li>
-                            <div>More Info</div>
-                            <a href="http://" target="_blank">pdf</a>
-                        </li>
-                    </ul>
                 </div>
   
             </div>
@@ -95,51 +52,108 @@
         </nav>
     </header>
 
-    <div id = "game">
-
-        <div id = "moves">
-            <p>Moves Remaining:</p>
-            <p id = "movesRemaining">8</p>
+    <div id = "widePopupWindows">
+        <div class = "settingsMenu popup widePopup">
+            <ul>
+                <li>
+                    <div>Show Switches</div>
+                    <label class = "switch">
+                        <input type="checkbox" onclick = "switchStateToggle()">
+                        <span class="slider"></span>
+                    </label>
+                </li>
+    
+                <li>
+                    <div>Show Distance to Solve</div>
+                    <label class = "switch">
+                        <input type="checkbox" onclick = "distanceToSolveToggle()">
+                        <span class="slider"></span>
+                    </label>
+                </li>
+    
+                <li>
+                    <div>Hover Effects</div>
+                    <label class = "switch">
+                        <input type="checkbox" onclick = "hoverEffectToggle()">
+                        <span class="slider"></span>
+                    </label>
+                </li>
+    
+                <li>
+                    <div>Limit moves</div>
+                    <label class = "switch">
+                        <input type="checkbox" checked onclick = "moveLimitToggle()">
+                        <span class="slider"></span>
+                    </label>
+                </li>
+    
+                <li>
+                    <div>Contact me</div>
+                    <a href="mailto:dwbroaddus@gmail.com">email</a>
+                </li>
+    
+                <li>
+                    <div>More Info</div>
+                    <a href="http://" target="_blank">pdf</a>
+                </li>
+            </ul>
         </div>
+        
 
-        <div id = "board"></div>
-
-        <div class = "distance">
-            <div>
-                Number of clicks to solve:
-            </div>
-            <div id = "distanceToSolve"></div>
+        <div class ="helpBox popup widePopup">
+            <ul>
+                <li>Click on boxes to toggle blocks on and off.</li>
+                <li>A puzzle is "solved" when every block matches its border.</li>
+                <li>Here is an example of an unsolved puzzle:</li>
+                <div class = "miniboard">
+                    <div class="default help-default button-on"></div>
+                    <div class="default help-default target-on"></div>
+                    <div class="default help-default"></div>
+                    <div class="default help-default button-on"></div>
+                    <div class="default help-default button-on target-on"></div>
+                </div>
+                <li>Here is that SAME puzzle, now solved:</li>
+                <div class = "miniboard">
+                    <div class="default help-default"></div>
+                    <div class="default help-default button-on target-on"></div>
+                    <div class="default help-default"></div>
+                    <div class="default help-default"></div>
+                    <div class="default help-default button-on target-on"></div>
+                </div>
+                <li>Notice that the borders do not change colors.</li>
+                <li>This is a puzzle game, so the rest is for you to discover!</li>
+                <li>(just kidding - if you need help, check the settings menu)</li>
+            </ul>
         </div>
-
-        <div class = "switchdiv"></div>
-
+        
     </div>
     
-    <div class ="helpBox">
-        <ul>
-            <li>Click on boxes to toggle blocks on and off.</li>
-            <li>A puzzle is "solved" when every block matches its border.</li>
-            <li>Here is an example of an unsolved puzzle:</li>
-            <div class = "miniboard">
-                <div class="default button-on"></div>
-                <div class="default target-on"></div>
-                <div class="default"></div>
-                <div class="default button-on"></div>
-                <div class="default button-on target-on"></div>
+
+
+    <div id = "game">
+
+        <div id="gameInfo">
+            <div id = "moves">
+                <p>Moves Remaining:</p>
+                <p id = "movesRemaining">8</p>
             </div>
-            <li>Here is that SAME puzzle, now solved:</li>
-            <div class = "miniboard">
-                <div class="default"></div>
-                <div class="default button-on target-on"></div>
-                <div class="default"></div>
-                <div class="default"></div>
-                <div class="default button-on target-on"></div>
+
+            <div class = "distance">
+                <div>
+                    Number of clicks to solve:
+                </div>
+                <div id = "distanceToSolve"></div>
             </div>
-            <li>Notice that the borders do not change colors.</li>
-            <li>This is a puzzle game, so the rest is for you to discover!</li>
-            <li>(just kidding - if you need help, check the settings menu)</li>
-        </ul>
+            
+            <div class = "switchdiv"></div>
+
+        </div>
+        
+        <div id = "board"></div>
+        
     </div>
+    
+
 
     <div class="solveMessage">
         <p>You solved it!</p>
