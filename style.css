@@ -87,10 +87,18 @@ a{
     z-index: 1;
 }
 
+#widePopupWindows{
+    position:absolute;
+    /* border:1px black solid; */
+    width: 100vw;
+}
+
 @media (max-width:2680px) and (min-width:475px){
     .widePopup{
         width: 475px;
-        background-color: red;
+        /* background-color: rgb(255, 255, 126); */
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -149,20 +157,25 @@ a{
     color: white
 }
 
-.settingsMenu{
-    /* width: 80%;
-    left:10%;
-    max-width: 520px; */
+/* .settingsMenu{
     position: absolute;
     top: 3em;
     left:0;
-}
+} */
 
 .settingsMenu li{
     padding: 0.5em 0.2em;
+    /* line-height: 2em; */
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.settingsMenu>ul{
+    /* line-height: 2em; */
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 .settingsMenu li>a{
@@ -243,15 +256,6 @@ input:checked + .slider:before {
     margin: 0.2em
 }
 
-
-.helpBox{
-
-    /* left: 10%;
-    width: 80%; */
-    /* display: none; */
-    line-height: 2em;
-    /* list-style: none; */
-}
 
 .help-open{
     display:block;
