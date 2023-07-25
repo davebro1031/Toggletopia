@@ -24,7 +24,7 @@
                         <span class = "selected">Medium</span>
                         <div class="caret"></div>
                     </div>
-                    <ul class = "menu">
+                    <ul class = "menu popup">
                         <li onclick = setDifficulty(gameMapS5)>Easy</li>
                         <li onclick = setDifficulty(gameMapS8) class = "active">Medium</li>
                         <li onclick = setDifficulty(gameMapSPM)>Hard</li>
@@ -45,7 +45,7 @@
                     <div class="utilities-item utilities-icon settingsSelect">
                         <img src="settingsGear.png" alt="Settings" class = "nav-icon">
                     </div>
-                    <ul class = "settingsMenu">
+                    <ul class = "settingsMenu popup widePopup">
                         <li>
                             <div>Show Switches</div>
                             <label class = "switch">
@@ -95,27 +95,9 @@
         </nav>
     </header>
 
-    <div id = "game">
-
-        <div id = "moves">
-            <p>Moves Remaining:</p>
-            <p id = "movesRemaining">8</p>
-        </div>
-
-        <div id = "board"></div>
-
-        <div class = "distance">
-            <div>
-                Number of clicks to solve:
-            </div>
-            <div id = "distanceToSolve"></div>
-        </div>
-
-        <div class = "switchdiv"></div>
-
-    </div>
+    <div id = "popUpWindows"></div>
     
-    <div class ="helpBox">
+    <div class ="helpBox popup widePopup">
         <ul>
             <li>Click on boxes to toggle blocks on and off.</li>
             <li>A puzzle is "solved" when every block matches its border.</li>
@@ -140,6 +122,28 @@
             <li>(just kidding - if you need help, check the settings menu)</li>
         </ul>
     </div>
+
+    <div id = "game">
+
+        <div id = "moves">
+            <p>Moves Remaining:</p>
+            <p id = "movesRemaining">8</p>
+        </div>
+
+        <div id = "board"></div>
+
+        <div class = "distance">
+            <div>
+                Number of clicks to solve:
+            </div>
+            <div id = "distanceToSolve"></div>
+        </div>
+
+        <div class = "switchdiv"></div>
+
+    </div>
+    
+
 
     <div class="solveMessage">
         <p>You solved it!</p>
