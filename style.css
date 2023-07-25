@@ -25,7 +25,6 @@ body{
 
 header{
     background-color: #7dd7f6;
-    font-size: 3vw;
 }
 
 .navbar{
@@ -89,16 +88,18 @@ a{
 
 #widePopupWindows{
     position:absolute;
-    /* border:1px black solid; */
     width: 100vw;
 }
 
 @media (max-width:2680px) and (min-width:475px){
     .widePopup{
         width: 475px;
-        /* background-color: rgb(255, 255, 126); */
         margin-left: auto;
         margin-right: auto;
+    }
+    .help-default{
+        border-width: 5px;
+        border-radius: 10px;
     }
 }
 
@@ -372,6 +373,13 @@ input:checked + .slider:before {
     border: 1vw solid var(--off-color);
     border-radius: 2vw;
     cursor: pointer;
+}
+
+@media (max-width:2680px) and (min-width:475px){
+    .help-default{
+        border-width: 5px;
+        border-radius: 10px;
+    }
 }
 
 .button-on{
