@@ -19,6 +19,7 @@ const board = document.getElementById("board")
 const helpBox = document.querySelector(".helpBox")
 const solveMessage = document.querySelector(".solveMessage")
 const failMessage = document.querySelector(".failMessage")
+const hoverArrows = document.getElementById("hoverArrows")
 
 // symmetric different for sets
 function symmetricDifference(setA, setB) {
@@ -282,6 +283,7 @@ function setDifficulty(choice){
     
     // clear old game board
     board.innerHTML = ""
+    hoverArrows.innerHTML = ""
 
     // add new buttons
     buttonIds.forEach(id =>{
@@ -291,6 +293,10 @@ function setDifficulty(choice){
 
         button.setAttribute("class", "default")
         button.onclick = function() {toggle(id)} 
+
+        let arrow = document.createElement("div")
+        hoverArrows.append(arrow)
+        arrow.setAttribute("class", `_${id} arrow`)
         
         if(showswitches){button.innerText = id} 
 
@@ -383,10 +389,10 @@ function toggle(buttonId){
         buttonSet = symmetricDifference(buttonSet, [id])
     })
 
-    if(hover){
-        buttonHoverOff(buttonId)
-        buttonHover(buttonId)
-    }
+    // if(hover){
+    //     buttonHoverOff(buttonId)
+    //     buttonHover(buttonId)
+    // }
 
 
     renderSwitchStates()
@@ -399,21 +405,31 @@ function buttonHover(buttonId){
 
     const toggleButtons = currentMap.get(buttonId).map(id => `${id}`)
     toggleButtons.forEach(id => {
+
         let button = document.getElementById(id)
-        if(buttonSet.has(id)){
-            button.classList.add("highlight-on")    
-        }else{
-            button.classList.add("highlight-off")
-        }
+        let arrow = hoverArrows.querySelector(`._${id}`)
+
+        arrow.classList.add("visible")
+
+        // if(buttonSet.has(id)){
+        //     button.classList.add("highlight-on")   
+        // }else{
+        //     button.classList.add("highlight-off")
+        // }
     })
 }
 
 function buttonHoverOff(buttonId){
     const toggleButtons = currentMap.get(buttonId).map(id => `${id}`)
     toggleButtons.forEach(id => {
+
         let button = document.getElementById(id)
-        button.classList.remove("highlight-on")
-        button.classList.remove("highlight-off")
+        let arrow = hoverArrows.querySelector(`._${id}`)
+
+        arrow.classList.remove("visible")
+
+        // button.classList.remove("highlight-on")
+        // button.classList.remove("highlight-off")
     })
 }
 

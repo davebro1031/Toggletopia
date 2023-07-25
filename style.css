@@ -367,44 +367,46 @@ input:checked + .slider:before {
     display: block;
 }
 
-
-/* #game{
-    background-color: rgb(175, 174, 174);
-}
-
-#gameInfo{
-    border: 1px black solid;
-} */
-
 @media (min-width:650px){
 
     #gameInfo{
         float:left;
         padding-top: 0.5vw;
+        height: 200px;
     }
     
-    #board{
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0 3vw;
-        padding-top:0.5vw;
-    }
-
 }
 
-@media (max-width:650px){
-    #board{
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0 3vw;
-    }
+#gameBoard{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 3vw;
+    padding-top: 0.5vw;
 }
 
-#board{
+#gameBoard>*{
     display: flex;
-    justify-content: space-between;
-    /* border: 1px black solid; */
+    justify-content: space-around;
  }
+
+ #hoverArrows{
+    margin: 10px 0 0;
+ }
+
+ .arrow{
+    border: solid black;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    padding: 5px;
+    transform: rotate(-135);
+    -webkit-transform: rotate(-135deg);
+    z-index: -1;
+    visibility: hidden;
+  }
+
+  .visible{
+    visibility: visible
+  }
 
 @media (max-width:2680px) and (min-width:475px){
     .help-default{
@@ -440,10 +442,12 @@ input:checked + .slider:before {
     border-color: var(--on-color);
 }
 
-.highlight-on{
+/* Styling for old mouse-over effects */
+
+/* .highlight-on{
     background-color: rgba(46,197,247,0.3)
 }
 
 .highlight-off{
     background-color: rgba(35,0,140,0.5);
-}
+} */
