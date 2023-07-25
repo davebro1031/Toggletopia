@@ -107,11 +107,7 @@ a{
 @media (max-width:475px){
 
     .navbar{
-
         height: 6.5em;
-        /* display: flex;
-        justify-content: space-between;
-        align-items: center; */
         padding: 15px;
     }
 
@@ -121,7 +117,14 @@ a{
     
     .widePopup{
         width:100%;
+    }
+
+    .helpBox{
         font-size: 3.3vw;
+    }
+
+    .settingsMenu{
+        font-size: 4.4vw;
     }
 
 }
