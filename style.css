@@ -241,21 +241,23 @@ input:checked + .slider:before {
 
 
 /* Styling the "show switches" mode  */
-.switchdiv{ 
-    display: none;
-    transition: 0.2s;
-    z-index: 1;
+.switches{
+    visibility:hidden;
+    display: flex
+}
+.switches>div{
+    margin: 0.2em
 }
 
 .switches-display{
-    display: block;
+    visibility: visible;
 }
 
 
 /* Styling distance to solve box */
 .distance{
-    display: flex;
     visibility: hidden;
+    display: flex;
 }
 
 .distance-display{
@@ -401,6 +403,16 @@ input:checked + .slider:before {
     /* border: 1px black solid; */
  }
 
+@media (max-width:2680px) and (min-width:475px){
+    .help-default{
+        border-width: 5px;
+        border-radius: 10px;
+    }
+}
+
+
+/* Block stylings */
+
 .default{
     aspect-ratio: 1/1;
     margin: 0.5vw;
@@ -409,14 +421,13 @@ input:checked + .slider:before {
     border: 1vw solid var(--off-color);
     border-radius: 2vw;
     cursor: pointer;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.6vw
 }
 
-@media (max-width:2680px) and (min-width:475px){
-    .help-default{
-        border-width: 5px;
-        border-radius: 10px;
-    }
-}
 
 .button-on{
     background-color:var(--on-color);

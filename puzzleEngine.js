@@ -11,8 +11,9 @@ let hover = false // if true, then hover effects will function
 let moves = true // if true, then moves will be limited 
 let movesRemaining = -1 
 let solved = false // activated when the puzzle is solved
+let showswitches = false
 
-const switchdiv = document.querySelector(".switchdiv")
+const switches = document.querySelector(".switches")
 const distdiv = document.querySelector(".distance")
 const board = document.getElementById("board")
 const helpBox = document.querySelector(".helpBox")
@@ -38,12 +39,21 @@ function randInt(max){
 }
 
 function switchStateToggle(){
-    // let switchdiv = document.querySelector(".switchdiv")
-    switchdiv.classList.toggle('switches-display')
+    showswitches = !(showswitches)
+    switches.classList.toggle('switches-display')
+
+    if(showswitches){
+        buttonIds.forEach(id=>{
+            document.getElementById(id).innerText = id
+        })
+    }else{
+        buttonIds.forEach(id=>{
+            document.getElementById(id).innerText=""
+        })
+    }
 }
 
 function distanceToSolveToggle(){
-    // let distdiv = document.querySelector(".distance")
     distdiv.classList.toggle('distance-display')
 }
 
@@ -278,9 +288,12 @@ function setDifficulty(choice){
         let button = document.createElement("div")
         board.append(button)
         button.id = id
+
         button.setAttribute("class", "default")
         button.onclick = function() {toggle(id)} 
         
+        if(showswitches){button.innerText = id} 
+
         if(hover){
             button.onmouseenter = function() {buttonHover(id)}
             button.onmouseleave = function() {buttonHoverOff(id)}
@@ -339,6 +352,7 @@ function resetButtons(){
 }
 
 function renderSwitchStates(){
+    let switchdiv = document.getElementById('switchdiv')
     switchdiv.innerHTML = ""
     switchSet.forEach(id =>{
         switchdiv.innerText += id
