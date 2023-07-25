@@ -239,6 +239,8 @@ input:checked + .slider:before {
     transform: translateX(0.5em);
 }
 
+
+/* Styling the "show switches" mode  */
 .switchdiv{ 
     display: none;
     transition: 0.2s;
@@ -249,14 +251,15 @@ input:checked + .slider:before {
     display: block;
 }
 
+
+/* Styling distance to solve box */
 .distance{
     display: flex;
-    opacity: 0;
+    visibility: hidden;
 }
 
 .distance-display{
-    color: black;
-    opacity: 1;
+    visibility: visible;
 }
 
 .distance>div{
