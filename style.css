@@ -108,7 +108,7 @@ a{
 
     .navbar{
 
-        height: 6.8em;
+        height: 6.5em;
         /* display: flex;
         justify-content: space-between;
         align-items: center; */
@@ -246,7 +246,7 @@ input:checked + .slider:before {
     display: flex
 }
 .switches>div{
-    margin: 0.2em
+    margin: 0em 0.2em 0;
 }
 
 .switches-display{
@@ -265,7 +265,7 @@ input:checked + .slider:before {
 }
 
 .distance>div{
-    margin: 0.2em
+    margin: 0.2em 0.2em 0;
 }
 
 
@@ -284,7 +284,7 @@ input:checked + .slider:before {
 }
 
 #moves>p{
-    padding:0.5em 0.2em;
+    padding:0.5em 0.2em 0;
     margin:0;
 }
 
@@ -377,14 +377,14 @@ input:checked + .slider:before {
 
     #gameInfo{
         float:left;
+        padding-top: 0.5vw;
     }
     
     #board{
-        /* width: 90%; */
         margin-left: auto;
         margin-right: auto;
         padding: 0 3vw;
-        /* float:left; */
+        padding-top:0.5vw;
     }
 
 }
