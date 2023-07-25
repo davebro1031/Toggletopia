@@ -27,14 +27,6 @@ header{
     background-color: #7dd7f6;
 }
 
-.navbar{
-    height: 4em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 24px;
-}
-
 a{
     text-decoration: none;
     color: inherit;
@@ -92,6 +84,15 @@ a{
 }
 
 @media (max-width:2680px) and (min-width:475px){
+    
+    .navbar{
+        height: 4em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 24px;
+    }
+    
     .widePopup{
         width: 475px;
         margin-left: auto;
@@ -104,10 +105,25 @@ a{
 }
 
 @media (max-width:475px){
+
+    .navbar{
+
+        height: 6.5em;
+        /* display: flex;
+        justify-content: space-between;
+        align-items: center; */
+        padding: 15px;
+    }
+
+    .utilities{
+        float:right;
+    }
+    
     .widePopup{
         width:100%;
         font-size: 3.3vw;
     }
+
 }
 
 .dropdown{
@@ -223,28 +239,33 @@ input:checked + .slider:before {
     transform: translateX(0.5em);
 }
 
-.switchdiv{ 
-    display: none;
-    transition: 0.2s;
-    z-index: 1;
+
+/* Styling the "show switches" mode  */
+.switches{
+    visibility:hidden;
+    display: flex
+}
+.switches>div{
+    margin: 0em 0.2em 0;
 }
 
 .switches-display{
-    display: block;
+    visibility: visible;
 }
 
+
+/* Styling distance to solve box */
 .distance{
+    visibility: hidden;
     display: flex;
-    opacity: 0;
 }
 
 .distance-display{
-    color: black;
-    opacity: 1;
+    visibility: visible;
 }
 
 .distance>div{
-    margin: 0.2em
+    margin: 0.2em 0.2em 0;
 }
 
 
@@ -263,7 +284,7 @@ input:checked + .slider:before {
 }
 
 #moves>p{
-    padding:0.5em 0.2em;
+    padding:0.5em 0.2em 0;
     margin:0;
 }
 
@@ -356,14 +377,14 @@ input:checked + .slider:before {
 
     #gameInfo{
         float:left;
+        padding-top: 0.5vw;
     }
     
     #board{
-        /* width: 90%; */
         margin-left: auto;
         margin-right: auto;
         padding: 0 3vw;
-        /* float:left; */
+        padding-top:0.5vw;
     }
 
 }
@@ -382,6 +403,16 @@ input:checked + .slider:before {
     /* border: 1px black solid; */
  }
 
+@media (max-width:2680px) and (min-width:475px){
+    .help-default{
+        border-width: 5px;
+        border-radius: 10px;
+    }
+}
+
+
+/* Block stylings */
+
 .default{
     aspect-ratio: 1/1;
     margin: 0.5vw;
@@ -390,14 +421,13 @@ input:checked + .slider:before {
     border: 1vw solid var(--off-color);
     border-radius: 2vw;
     cursor: pointer;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.6vw
 }
 
-@media (max-width:2680px) and (min-width:475px){
-    .help-default{
-        border-width: 5px;
-        border-radius: 10px;
-    }
-}
 
 .button-on{
     background-color:var(--on-color);
