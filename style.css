@@ -295,78 +295,6 @@ input:checked + .slider:before {
     color: red;
 }
 
-.solveMessage{
-    border: 3px #ffbb00 solid;
-    border-radius: 0.5em;
-    background-color: #ffd700;
-    position: absolute;
-    top: 50%;
-    left:20%;
-    width: 8em;
-    text-align: center;
-    font-size: 2em;
-    display: none;
-}
-
-.solveMessage>p{
-    margin: 0;
-    padding: 0.5em 0.1em
-}
-
-.solveMessage>footer{
-    float: right
-}
-
-.solve-icon{
-    width: 1em;
-}
-
-.solve-icon:hover{
-    background-color: #ff9900;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.solve-show{
-    display: block;
-}
-
-.failMessage{
-    border: 3px #a50000 solid;
-    border-radius: 0.5em;
-    background-color: #ff7979;
-    position: absolute;
-    top: 50%;
-    left:20%;
-    width: 8em;
-    text-align: center;
-    font-size: 2em;
-    display: none;
-}
-
-.failMessage>p{
-    margin: 0;
-    padding: 0.5em 0.1em
-}
-
-.failMessage>footer{
-    float: right
-}
-
-.fail-icon{
-    width: 1em;
-}
-
-.fail-icon:hover{
-    background-color: #ff0000;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.fail-show{
-    display: block;
-}
-
 @media (min-width:650px){
 
     #gameInfo{
@@ -451,3 +379,61 @@ input:checked + .slider:before {
 .highlight-off{
     background-color: rgba(35,0,140,0.5);
 } */
+
+.messages>*{
+    border-radius: 0.5em;
+    overflow: hidden;
+    margin-left:auto;
+    margin-right:auto;
+    width: 8em;
+    text-align: center;
+    font-size: 2em;
+    display: none;
+ }
+
+ .messages>*>p{
+    margin: 0;
+    padding: 0.5em 0.1em
+ }
+
+ .messages>*>footer{
+    float: right
+ }
+
+.solveMessage{
+    border: 3px #ffbb00 solid;
+    background-color: #ffd700;
+}
+
+.solve-icon{
+    width: 1em;
+}
+
+.solve-icon:hover{
+    background-color: #ff9900;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.solve-show{
+    display: block;
+}
+
+.failMessage{
+    border: 3px #a50000 solid;
+    background-color: #ff7979;
+}
+
+.fail-icon{
+    width: 1em;
+}
+
+.fail-icon:hover{
+    background-color: #ff0000;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.fail-show{
+    display: block;
+}
