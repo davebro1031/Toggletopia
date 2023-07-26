@@ -63,7 +63,7 @@ a{
 }
 
 .nav-icon{
-    width: 2em;
+    width: 30px;
 }
 
 .popup{
@@ -98,10 +98,7 @@ a{
         margin-left: auto;
         margin-right: auto;
     }
-    .help-default{
-        border-width: 5px;
-        border-radius: 10px;
-    }
+
 }
 
 @media (max-width:475px){
@@ -117,6 +114,7 @@ a{
     
     .widePopup{
         width:100%;
+        border-radius: 0;
     }
 
     .helpBox{
@@ -336,13 +334,6 @@ input:checked + .slider:before {
     visibility: visible
   }
 
-@media (max-width:2680px) and (min-width:475px){
-    .help-default{
-        border-width: 5px;
-        border-radius: 10px;
-    }
-}
-
 
 /* Block stylings */
 
@@ -361,6 +352,12 @@ input:checked + .slider:before {
     font-size: 3.6vw
 }
 
+@media (max-width:2680px) and (min-width:475px){
+    .help-default{
+        border-width: 5px;
+        border-radius: 10px;
+    }
+}
 
 .button-on{
     background-color:var(--on-color);
