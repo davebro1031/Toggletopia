@@ -41,7 +41,7 @@ function randInt(max){
 
 function switchStateToggle(){
     showswitches = !(showswitches)
-    switches.classList.toggle('switches-display')
+    switches.classList.toggle('visible')
 
     if(showswitches){
         buttonIds.forEach(id=>{
@@ -55,7 +55,7 @@ function switchStateToggle(){
 }
 
 function distanceToSolveToggle(){
-    distdiv.classList.toggle('distance-display')
+    distdiv.classList.toggle('visible')
 }
 
 function hoverEffectToggle(){
@@ -86,7 +86,7 @@ function moveLimitToggle(){
 function showHelp(){
     closeFail()
     closeSolve()
-    helpBox.classList.toggle("help-open")
+    helpBox.classList.toggle("display-block")
 }
 
 // Create Dropdown menu(s)
@@ -104,7 +104,7 @@ select.addEventListener('click', () => {
     closeSolve()
     // select.classList.toggle('select-clicked')
     caret.classList.toggle('caret-rotate')
-    menu.classList.toggle('menu-open')
+    menu.classList.toggle('display-block')
 
 })
 
@@ -118,7 +118,7 @@ options.forEach(option =>{
 
         // select.classList.remove('select-clicked')
         caret.classList.remove('caret-rotate')
-        menu.classList.remove('menu-open')
+        menu.classList.remove('display-block')
 
         options.forEach(option => {
             option.classList.remove('active')
@@ -139,21 +139,21 @@ const settingsMenu = document.querySelector('.settingsMenu')
 settingsSelect.addEventListener('click', () => {
     closeFail()
     closeSolve()
-    settingsMenu.classList.toggle('menu-open')
+    settingsMenu.classList.toggle('display-block')
 })
 
 // Close menus when you click somewhere other than inside it
 
 document.onclick = function(event){
     if(!settingsSelect.contains(event.target) && !settingsMenu.contains(event.target)){
-        settingsMenu.classList.remove('menu-open') 
+        settingsMenu.classList.remove('display-block') 
     }
     if(!helpBox.contains(event.target) && !document.getElementById("info").contains(event.target)){
-        helpBox.classList.remove("help-open")
+        helpBox.classList.remove("display-block")
     }
     if(!select.contains(event.target) && !menu.contains(event.target)){
         select.classList.remove('select-clicked')
-        menu.classList.remove('menu-open')
+        menu.classList.remove('display-block')
         caret.classList.remove('caret-rotate') 
     }
 }
@@ -444,20 +444,20 @@ function distanceToSolve(){
 }
 
 function solvedPuzzle(){
-    solveMessage.classList.add("solve-show")
+    solveMessage.classList.add("display-block")
     solved = true;
 }
 
 function closeSolve(){
-    solveMessage.classList.remove("solve-show")
+    solveMessage.classList.remove("display-block")
 }
 
 function failedPuzzle(){
-    failMessage.classList.add("fail-show")
+    failMessage.classList.add("display-block")
 }
 
 function closeFail(){
-    failMessage.classList.remove("fail-show")
+    failMessage.classList.remove("display-block")
 }
 
 function resetMovesRemaining(){
